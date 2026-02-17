@@ -1,0 +1,181 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Conquer Your Studies: Strategic Battle Plan study dashboard",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create app shell and primary navigation with two main areas: War Map dashboard and Divide and Conquer tasks.",
+      "acceptanceCriteria": [
+        "App header displays the full app name exactly as provided.",
+        "There are two clearly accessible primary sections/pages: Dashboard (War Map) and Divide and Conquer.",
+        "All user-facing text is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the root app shell layout with header (showing the exact app name), primary navigation links/tabs for the two sections, and a main content area that switches between the Dashboard (War Map) and Divide and Conquer views. Use shadcn-ui components (e.g., navigation, buttons, cards) to compose the shell UI; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DashboardWarMap.tsx",
+          "operation": "create",
+          "description": "Create the Dashboard (War Map) page component and export it for use by the App shell. Use shadcn-ui layout primitives (e.g., Card) to keep styling consistent; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DivideAndConquer.tsx",
+          "operation": "create",
+          "description": "Create the Divide and Conquer page component and export it for use by the App shell. Use shadcn-ui form/list primitives (e.g., Button, Input, Card) for consistent interaction UI; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Ensure the root render remains wired to the App shell and React Query provider; verify App imports resolve to the created frontend/src/App.tsx and that navigation between the two primary sections is functional."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Apply a bold/adventurous Strategic Battle Plan theme and enforce the Red/Blue/Green/Yellow status color system with consistent labels.",
+      "acceptanceCriteria": [
+        "Each of the four statuses is visually distinguishable and consistently mapped to the specified color and label (Mission Critical / Tactical Drills / Victory Zone / Scouting).",
+        "Theme is applied consistently across pages (buttons, cards, badges, headers) and reads as bold/adventurous (not minimal/neutral)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Create global styles and CSS variables to support a bold/adventurous Strategic Battle Plan theme (typography, spacing, background treatment) and define semantic tokens for the four strategic zones. Ensure global styling applies across all pages without editing immutable component files."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with named colors (and/or CSS variable mappings) for the four strategic zones and any additional theme tokens needed (e.g., banner/background overlays) to keep styling consistent across the app."
+        },
+        {
+          "path": "frontend/src/lib/statusTheme.ts",
+          "operation": "create",
+          "description": "Add a shared mapping utility that converts backend Status values into UI labels (Mission Critical / Tactical Drills / Victory Zone / Scouting) and corresponding Tailwind classnames/tokens so every page uses the same color+label logic."
+        },
+        {
+          "path": "frontend/src/components/StatusBadge.tsx",
+          "operation": "create",
+          "description": "Create a reusable StatusBadge component that renders the correct label and color styling using the shared status mapping. Compose shadcn-ui components (e.g., Badge) if available to keep consistent look-and-feel; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build the War Map syllabus dashboard UI showing map-like nodes/territories with color-coded status labels.",
+      "acceptanceCriteria": [
+        "Dashboard renders a collection of syllabus items in a map-like layout (nodes/tiles connected or arranged as territories).",
+        "Each syllabus item shows its title and current status label and color.",
+        "User can visually scan the map and identify which items are Scouting/Mission Critical/Tactical Drills/Victory Zone by color and label."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/DashboardWarMap.tsx",
+          "operation": "modify",
+          "description": "Implement the War Map layout: render syllabus items as map-like territory nodes/tiles (e.g., grid/flow layout with connecting lines/paths), show each item’s title/topic and StatusBadge, and apply Strategic Battle Plan styling. Use shadcn-ui components (e.g., Card) for nodes and consistent spacing; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useSyllabusItems.ts",
+          "operation": "create",
+          "description": "Create React Query hooks to load syllabus items from the Internet Computer backend interface (getAllSyllabusItems) using the existing core-infrastructure backend connection patterns. Ensure hooks expose loading/error states and caching appropriate for the Dashboard UI."
+        },
+        {
+          "path": "frontend/src/components/WarMapNode.tsx",
+          "operation": "create",
+          "description": "Create a reusable node/territory component used by the dashboard to render a syllabus item with title, optional description, and StatusBadge, styled to look like a map territory. Compose shadcn-ui primitives (e.g., Card) where appropriate; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement Divide and Conquer UI for creating chapters/topics and tasks, updating task completion/status, and persisting changes via backend calls with React Query.",
+      "acceptanceCriteria": [
+        "User can create a chapter/topic and add multiple smaller tasks under it.",
+        "User can mark tasks complete and see completion reflected in the UI (including Victory Zone color/label where applicable).",
+        "Edits (create/update/complete) persist after page refresh (not purely in-memory)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/DivideAndConquer.tsx",
+          "operation": "modify",
+          "description": "Implement Divide and Conquer flow: (1) create a syllabus item (chapter/topic/description), (2) select an existing syllabus item, (3) add multiple tasks to the selected item, (4) update task status (including Victory Zone for completed tasks). Render task lists with clear status labels/colors using StatusBadge/status mapping. Use shadcn-ui form and list components (e.g., Input, Button, Card) to compose the UI; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useSyllabusMutations.ts",
+          "operation": "create",
+          "description": "Create React Query mutations for createSyllabusItem, addTaskToSyllabusItem, and updateTaskStatus, including cache invalidation/refetch for the syllabus item lists/details so changes persist and are reflected after refresh."
+        },
+        {
+          "path": "frontend/src/components/TaskList.tsx",
+          "operation": "create",
+          "description": "Create a task list component that displays tasks for the selected syllabus item, includes controls to mark a task completed (Victory Zone) or change status, and uses the shared status mapping for consistent labels/colors. Compose shadcn-ui primitives (e.g., Button, Dropdown/Menu if available) for interactions; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/SyllabusItemSelector.tsx",
+          "operation": "create",
+          "description": "Create a selector component to choose a syllabus chapter/topic from loaded items (and optionally filter/search). Compose shadcn-ui components (e.g., Select/Popover/Command if available) to provide an accessible selection UI; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Display the provided motivational quote as a prominent closing section at the end of a primary page/flow.",
+      "acceptanceCriteria": [
+        "The quote text appears exactly as provided (including punctuation and dash).",
+        "Quote is placed at the end of the interface/flow (visually bottom-most closing section on at least one main page)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/MotivationalQuote.tsx",
+          "operation": "create",
+          "description": "Create a prominent closing-section component that renders the quote text exactly as provided and styles it consistently with the bold/adventurous theme (e.g., banner/card treatment). Compose shadcn-ui components (e.g., Card) where useful; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DashboardWarMap.tsx",
+          "operation": "modify",
+          "description": "Place the MotivationalQuote component at the bottom of the Dashboard page content so it is the closing section of the primary flow and visually bottom-most."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Add required generated static art assets under frontend/public/assets/generated and visibly use at least one in the app shell or dashboard.",
+      "acceptanceCriteria": [
+        "Generated images are stored under frontend/public/assets/generated and referenced directly by the frontend.",
+        "At least one generated background/hero image is visibly used in the app shell or dashboard without breaking readability.",
+        "No backend endpoints are used to fetch these static images."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/war-map-bg.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated static background image asset at the required path for direct frontend use (no backend fetching)."
+        },
+        {
+          "path": "frontend/public/assets/generated/battle-icons.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static icon set image asset at the required path for direct frontend use (no backend fetching)."
+        },
+        {
+          "path": "frontend/public/assets/generated/battle-banner.dim_1600x400.png",
+          "operation": "create",
+          "description": "Add the generated static header banner image asset at the required path for direct frontend use (no backend fetching)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire generated art assets into the app shell (e.g., render the wide header banner and/or emblem area) and ensure readability with appropriate overlay/contrast from the theme. Reference images directly from frontend/public/assets/generated (no backend fetching). Use shadcn-ui layout primitives as needed; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DashboardWarMap.tsx",
+          "operation": "modify",
+          "description": "Apply the parchment-style war map background texture on the Dashboard (or its container) and optionally use the icon set for legend/status indicators, ensuring map readability. Reference images directly from frontend/public/assets/generated (no backend fetching). Use shadcn-ui components where helpful; verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a bold, adventurous web app study planner called \"Conquer Your Studies: Your Epic Learning Journey\" with a Strategic Battle Plan (war-map) UI, color-coded study zones, a Divide and Conquer task breakdown section, and a closing motivational quote.",
+  "architectural_notes": [
+    "UI theme: \"Strategic Battle Plan\" / war-map aesthetic with bold, adventurous styling.",
+    "Use defined color mapping for subject/topic status and sections: Red=Mission Critical, Blue=Tactical Drills, Green=Victory Zone, Yellow=Scouting."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Parchment-style war map background texture with subtle grid and compass rose (war-map-bg.dim_1920x1080.png)\n- Bold adventurous emblem/badge icon set: sword, shield, flag, compass (battle-icons.dim_512x512.png)\n- Wide header banner with \"Strategic Battle Plan\" aesthetic (battle-banner.dim_1600x400.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-the-app-shell-and-primary-navigation-for-conquer-your-studies-your-epic-learning-journey-with-two-main-areas-1-a-war-map-style-syllabus-dashboard-and-2-a-divide-and-conquer-task-breakdown-section",
+      "title": "Create the app shell and primary navigation for \"Conquer Your Studies: Your Epic Learning Journey\" with two main areas: (1) a War Map-style syllabus dashboard and (2) a \"Divide and Conquer\" task breakdown section.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-consistent-strategic-battle-plan-visual-theme-that-is-bold-and-adventurous-including-typography-spacing-and-ui-styling-and-enforce-the-provided-section-color-system-across-the-interface-red-mission-critical-difficult-high-priority-blue-tactical-drills-revision-practice-tests-green-victory-zone-completed-yellow-scouting-new-topics",
+      "title": "Implement a consistent \"Strategic Battle Plan\" visual theme that is bold and adventurous, including typography, spacing, and UI styling, and enforce the provided section color system across the interface: Red=Mission Critical (difficult/high-priority), Blue=Tactical Drills (revision/practice tests), Green=Victory Zone (completed), Yellow=Scouting (new topics).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-war-map-of-the-syllabus-dashboard-ui-that-presents-syllabus-items-as-map-like-nodes-territories-showing-each-item-s-current-status-scouting-mission-critical-tactical-drills-victory-zone-using-the-defined-color-coded-styling-and-labels",
+      "title": "Build the \"War Map of the syllabus\" dashboard UI that presents syllabus items as map-like nodes/territories, showing each item’s current status (Scouting, Mission Critical, Tactical Drills, Victory Zone) using the defined color-coded styling and labels.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-divide-and-conquer-section-ui-to-select-a-syllabus-chapter-topic-and-break-it-into-smaller-tasks-with-the-ability-to-create-view-update-and-mark-tasks-as-completed-moving-them-into-the-victory-zone-status",
+      "title": "Implement the \"Divide and Conquer\" section UI to select a syllabus chapter/topic and break it into smaller tasks, with the ability to create, view, update, and mark tasks as completed (moving them into the Victory Zone status).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-provided-motivational-quote-at-the-end-of-the-primary-user-flow-interface-e-g-at-the-bottom-of-the-dashboard-and-or-as-a-dedicated-closing-section-using-prominent-styling-consistent-with-the-bold-adventurous-theme",
+      "title": "Display the provided motivational quote at the end of the primary user flow/interface (e.g., at the bottom of the Dashboard and/or as a dedicated closing section), using prominent styling consistent with the bold/adventurous theme.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-required-generated-static-art-assets-to-support-the-war-map-battle-plan-look-and-render-them-in-the-ui-from-frontend-public-assets-generated-do-not-serve-images-from-the-backend",
+      "title": "Add required generated static art assets to support the War Map/Battle Plan look, and render them in the UI from frontend/public/assets/generated (do not serve images from the backend).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "War-map style syllabus dashboard (Strategic Battle Plan) with bold/adventurous UI",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Color-coded zones/sections: Red=Mission Critical, Blue=Tactical Drills, Green=Victory Zone (completed), Yellow=Scouting (new topics)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "\"Divide and Conquer\" section to break chapters into small tasks",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Display the provided motivational quote at the end of the interface/flow",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add backend persistence for syllabus items and tasks with status values that support the four strategic zones (Scouting, Mission Critical, Tactical Drills, Victory Zone), and expose query/update methods consumed by the frontend via React Query.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Conquer Your Studies: Your Epic Learning Journey",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,124 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-the-app-shell-and-primary-navigation-for-conquer-your-studies-your-epic-learning-journey-with-two-main-areas-1-a-war-map-style-syllabus-dashboard-and-2-a-divide-and-conquer-task-breakdown-section",
+      "featureTitle": "Create the app shell and primary navigation for \"Conquer Your Studies: Your Epic Learning Journey\" with two main areas: (1) a War Map-style syllabus dashboard and (2) a \"Divide and Conquer\" task breakdown section.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/main.tsx",
+        "frontend/src/pages/DashboardWarMap.tsx",
+        "frontend/src/pages/DivideAndConquer.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-consistent-strategic-battle-plan-visual-theme-that-is-bold-and-adventurous-including-typography-spacing-and-ui-styling-and-enforce-the-provided-section-color-system-across-the-interface-red-mission-critical-difficult-high-priority-blue-tactical-drills-revision-practice-tests-green-victory-zone-completed-yellow-scouting-new-topics",
+      "featureTitle": "Implement a consistent \"Strategic Battle Plan\" visual theme that is bold and adventurous, including typography, spacing, and UI styling, and enforce the provided section color system across the interface: Red=Mission Critical (difficult/high-priority), Blue=Tactical Drills (revision/practice tests), Green=Victory Zone (completed), Yellow=Scouting (new topics).",
+      "files": [
+        "frontend/src/components/StatusBadge.tsx",
+        "frontend/src/index.css",
+        "frontend/src/lib/statusTheme.ts",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-war-map-of-the-syllabus-dashboard-ui-that-presents-syllabus-items-as-map-like-nodes-territories-showing-each-item-s-current-status-scouting-mission-critical-tactical-drills-victory-zone-using-the-defined-color-coded-styling-and-labels",
+      "featureTitle": "Build the \"War Map of the syllabus\" dashboard UI that presents syllabus items as map-like nodes/territories, showing each item’s current status (Scouting, Mission Critical, Tactical Drills, Victory Zone) using the defined color-coded styling and labels.",
+      "files": [
+        "frontend/src/components/WarMapNode.tsx",
+        "frontend/src/pages/DashboardWarMap.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-divide-and-conquer-section-ui-to-select-a-syllabus-chapter-topic-and-break-it-into-smaller-tasks-with-the-ability-to-create-view-update-and-mark-tasks-as-completed-moving-them-into-the-victory-zone-status",
+      "featureTitle": "Implement the \"Divide and Conquer\" section UI to select a syllabus chapter/topic and break it into smaller tasks, with the ability to create, view, update, and mark tasks as completed (moving them into the Victory Zone status).",
+      "files": [
+        "frontend/src/components/SyllabusItemSelector.tsx",
+        "frontend/src/components/TaskList.tsx",
+        "frontend/src/pages/DivideAndConquer.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-display-the-provided-motivational-quote-at-the-end-of-the-primary-user-flow-interface-e-g-at-the-bottom-of-the-dashboard-and-or-as-a-dedicated-closing-section-using-prominent-styling-consistent-with-the-bold-adventurous-theme",
+      "featureTitle": "Display the provided motivational quote at the end of the primary user flow/interface (e.g., at the bottom of the Dashboard and/or as a dedicated closing section), using prominent styling consistent with the bold/adventurous theme.",
+      "files": [
+        "frontend/src/components/MotivationalQuote.tsx",
+        "frontend/src/pages/DashboardWarMap.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-required-generated-static-art-assets-to-support-the-war-map-battle-plan-look-and-render-them-in-the-ui-from-frontend-public-assets-generated-do-not-serve-images-from-the-backend",
+      "featureTitle": "Add required generated static art assets to support the War Map/Battle Plan look, and render them in the UI from frontend/public/assets/generated (do not serve images from the backend).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/DashboardWarMap.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

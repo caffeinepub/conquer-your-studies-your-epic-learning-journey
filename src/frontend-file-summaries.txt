@@ -1,0 +1,14 @@
+{
+  "frontend/src/index.css": "Global styles with Strategic Battle Plan theme using OKLCH color system, custom CSS variables for four strategic zones (Mission Critical/red, Tactical Drills/blue, Victory Zone/green, Scouting/yellow), Cinzel display font for headers, and war-map background utilities.",
+  "frontend/tailwind.config.js": "Extended Tailwind configuration with Cinzel display font, strategic zone color tokens mapped to CSS variables, custom shadows (battle), and pulse-glow animation for adventurous UI effects.",
+  "frontend/src/App.tsx": "Main application shell with battle banner header displaying app name, tabbed navigation between War Map Dashboard and Divide and Conquer sections, and footer with caffeine.ai attribution.",
+  "frontend/src/lib/statusTheme.ts": "Shared utility mapping backend Status enum values to UI theme objects containing labels (Mission Critical, Tactical Drills, Victory Zone, Scouting) and corresponding Tailwind color classes for consistent styling.",
+  "frontend/src/components/StatusBadge.tsx": "Reusable badge component that displays status with correct label and color styling using the shared status theme mapping.",
+  "frontend/src/components/WarMapNode.tsx": "Card component rendering a syllabus item as a war map territory node with title, chapter, description, status badge, task count, and completion indicator.",
+  "frontend/src/components/MotivationalQuote.tsx": "Prominent closing section component displaying the provided motivational quote with sparkle icons and gradient card styling.",
+  "frontend/src/components/TaskList.tsx": "Task list component displaying tasks for a syllabus item with status update dropdown menu, completion indicators, and empty state.",
+  "frontend/src/components/SyllabusItemSelector.tsx": "Select dropdown component for choosing a syllabus chapter/topic from loaded items with status badge display.",
+  "frontend/src/pages/DashboardWarMap.tsx": "War Map dashboard page displaying syllabus items as territory nodes in a grid layout with war map background texture and motivational quote at bottom.",
+  "frontend/src/pages/DivideAndConquer.tsx": "Divide and Conquer page with two-column layout for creating new chapters and managing tasks for selected chapters with forms and task list.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for fetching syllabus items and mutations for creating items, adding tasks, and updating task status with automatic cache invalidation."
+}

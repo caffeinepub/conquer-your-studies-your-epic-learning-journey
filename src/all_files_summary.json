@@ -1,0 +1,23 @@
+{
+  "backend/main.mo": "Defines an actor managing syllabus items with creation, task updates, status changes, and retrieval using a Map-backed store.",
+  "feature_evidence.json": "Lists features, related files, components, and test IDs used as evidence for implemented functionality.",
+  "frontend-file-summaries.txt": "Contains prewritten summaries describing the purpose and functionality of major frontend files.",
+  "frontend/index.css": "Defines global Tailwind base styles and OKLCH color variables for light and dark modes.",
+  "frontend/index.html": "Basic HTML entry file mounting the React app with a root div and script loading main.tsx.",
+  "frontend/src/App.tsx": "Main app shell providing header, tab navigation, and routing between Dashboard and Divide & Conquer pages.",
+  "frontend/src/components/MotivationalQuote.tsx": "Renders a styled motivational quote card with decorative sparkles.",
+  "frontend/src/components/StatusBadge.tsx": "Displays a status badge using theme mappings to apply proper label and styling.",
+  "frontend/src/components/SyllabusItemSelector.tsx": "Dropdown selector listing syllabus items with topic, chapter, and status badge for choosing one to manage.",
+  "frontend/src/components/TaskList.tsx": "Renders tasks for a syllabus item with status update controls and empty-state handling.",
+  "frontend/src/components/WarMapNode.tsx": "Card node representing a syllabus item showing description, status, task count, and completion state.",
+  "frontend/src/hooks/useActor.ts": "Provides a React hook that creates and manages an authenticated or anonymous actor and invalidates dependent queries when identity changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Implements an Internet Identity context and provider to manage authentication state, identity loading, and login/logout operations.",
+  "frontend/src/hooks/useQueries.ts": "Defines React Query hooks for fetching and mutating syllabus items and tasks using the backend actor.",
+  "frontend/src/index.css": "Configures Tailwind layers and defines extensive light/dark theme CSS variables and utility classes.",
+  "frontend/src/lib/statusTheme.ts": "Maps syllabus task statuses to themed UI classes and exposes a helper to retrieve the theme for a given status.",
+  "frontend/src/main.tsx": "Bootstraps the React app with QueryClientProvider and InternetIdentityProvider and loads global styles.",
+  "frontend/src/pages/DashboardWarMap.tsx": "Renders the syllabus war map view with loading/error states and displays items using WarMapNode components and a background theme.",
+  "frontend/src/pages/DivideAndConquer.tsx": "Provides a UI for creating chapters, adding tasks, and updating task status using query hooks and interactive form components.",
+  "frontend/tailwind.config.js": "Tailwind config enabling dark mode, defining content paths, and extending theme with custom fonts, colors, radii, shadows, and keyframes for the app’s battle‑map aesthetic.",
+  "project_state.json": "Project metadata describing the study planner’s war‑map theme, required images, and implemented features with color‑coded status zones."
+}

@@ -1,0 +1,94 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-12T14:46:55.006Z",
+  "summary": "The diff implements a tabbed app shell with two main pages, a battle/war-map themed UI with status color mapping, a War Map dashboard rendering syllabus items as cards, and a Divide & Conquer page with React Query hooks wired to a Motoko canister. However, key requirements around task CRUD/completion semantics, required static generated image assets, and the exact motivational quote text are not fully met based on the provided diff summary.",
+  "missing_requirements": [
+    {
+      "id": "REQ-3",
+      "requirement": "Dashboard renders syllabus items in a map-like layout (nodes/tiles connected or arranged as territories).",
+      "reason": "The dashboard renders items in a standard responsive grid of cards; no evidence of connected nodes/territory/map-like structure beyond a background texture.",
+      "evidence": [
+        "frontend/src/pages/DashboardWarMap.tsx"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Divide and Conquer supports create, view, update, and mark tasks as completed (moving them into Victory Zone) with completion reflected per task.",
+      "reason": "Backend and UI treat status as a single status on the syllabus item, not per-task. There is no per-task completion state; updating a task \"status\" updates the parent item status and isCompleted flag, and tasks are stored only as [Text].",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/TaskList.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Backend provides methods to list tasks by chapter/topic and create/update/complete tasks with statuses restricted to the four supported values.",
+      "reason": "Backend exposes getAllSyllabusItems/getSyllabusItem, createSyllabusItem, addTaskToSyllabusItem, and updateTaskStatus, but tasks are plain text entries with no task IDs/status; there are no explicit methods to list tasks by chapter/topic, update task text, or complete individual tasks.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Motivational quote appears exactly as provided (including punctuation and dash) at the end of the flow.",
+      "reason": "A quote is displayed, but the BuildRequest’s exact quote text is not present in the request content, and the implemented quote includes line breaks and different punctuation (including an en dash). Cannot verify it matches “exactly as provided.”",
+      "evidence": [
+        "frontend/src/components/MotivationalQuote.tsx",
+        "frontend/src/pages/DashboardWarMap.tsx"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Add the required generated static art assets under frontend/public/assets/generated (war-map background, battle icons set, and header banner) and render them from there.",
+      "reason": "Frontend references banner and war-map background paths, but the diff does not show the required image files being added under frontend/public/assets/generated, and there is no evidence the required icon set image is added/used.",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity authentication/provider plumbing added (AuthClient context, identity-aware actor creation).",
+      "reason": "Authentication was explicitly “not required for this request.” While Internet Identity is allowed, adding the full provider/login infrastructure is additional scope not requested by the requirements list.",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/main.tsx"
+      ]
+    },
+    {
+      "description": "Caffeine.ai attribution/footer link added.",
+      "reason": "Not requested in any requirement or acceptance criteria.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/MotivationalQuote.tsx",
+    "frontend/src/components/StatusBadge.tsx",
+    "frontend/src/components/SyllabusItemSelector.tsx",
+    "frontend/src/components/TaskList.tsx",
+    "frontend/src/components/WarMapNode.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/lib/statusTheme.ts",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/DashboardWarMap.tsx",
+    "frontend/src/pages/DivideAndConquer.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

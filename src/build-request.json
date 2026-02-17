@@ -1,0 +1,150 @@
+{
+  "kind": "build_request",
+  "title": "Conquer Your Studies: Strategic Battle Plan study dashboard with Divide & Conquer tasks",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create the app shell and primary navigation for \"Conquer Your Studies: Your Epic Learning Journey\" with two main areas: (1) a War Map-style syllabus dashboard and (2) a \"Divide and Conquer\" task breakdown section.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "I want to create a web app called \"Conquer Your Studies: Your Epic Learning Journey\".",
+          "Key Features:\n1. A dashboard that looks like a War Map of the syllabus.\n2. A \"Divide and Conquer\" section to break chapters into small tasks."
+        ]
+      },
+      "acceptanceCriteria": [
+        "App header displays the full app name exactly as provided.",
+        "There are two clearly accessible primary sections/pages: Dashboard (War Map) and Divide and Conquer.",
+        "All user-facing text is in English."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement a consistent \"Strategic Battle Plan\" visual theme that is bold and adventurous, including typography, spacing, and UI styling, and enforce the provided section color system across the interface: Red=Mission Critical (difficult/high-priority), Blue=Tactical Drills (revision/practice tests), Green=Victory Zone (completed), Yellow=Scouting (new topics).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "The design should look like a \"Strategic Battle Plan\" for students. Please use these colors for different sections:\n- Red: For difficult/high-priority subjects (Mission Critical).\n- Blue: For revision and practice tests (Tactical Drills).\n- Green: For completed topics (Victory Zone).\n- Yellow: For new topics (Scouting).\n\nMake the interface look bold and adventurous!"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each of the four statuses is visually distinguishable and consistently mapped to the specified color and label (Mission Critical / Tactical Drills / Victory Zone / Scouting).",
+        "Theme is applied consistently across pages (buttons, cards, badges, headers) and reads as bold/adventurous (not minimal/neutral)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build the \"War Map of the syllabus\" dashboard UI that presents syllabus items as map-like nodes/territories, showing each item’s current status (Scouting, Mission Critical, Tactical Drills, Victory Zone) using the defined color-coded styling and labels.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "A dashboard that looks like a War Map of the syllabus."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Dashboard renders a collection of syllabus items in a map-like layout (nodes/tiles connected or arranged as territories).",
+        "Each syllabus item shows its title and current status label and color.",
+        "User can visually scan the map and identify which items are Scouting/Mission Critical/Tactical Drills/Victory Zone by color and label."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement the \"Divide and Conquer\" section UI to select a syllabus chapter/topic and break it into smaller tasks, with the ability to create, view, update, and mark tasks as completed (moving them into the Victory Zone status).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "A \"Divide and Conquer\" section to break chapters into small tasks."
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can create a chapter/topic and add multiple smaller tasks under it.",
+        "User can mark tasks complete and see completion reflected in the UI (including Victory Zone color/label where applicable).",
+        "Edits (create/update/complete) persist after page refresh (not purely in-memory)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add backend persistence for syllabus items and tasks with status values that support the four strategic zones (Scouting, Mission Critical, Tactical Drills, Victory Zone), and expose query/update methods consumed by the frontend via React Query.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Please use these colors for different sections:\n- Red: For difficult/high-priority subjects (Mission Critical).\n- Blue: For revision and practice tests (Tactical Drills).\n- Green: For completed topics (Victory Zone).\n- Yellow: For new topics (Scouting)."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend provides methods to: list syllabus items, create/update syllabus item status, list tasks by chapter/topic, create/update/complete tasks.",
+        "Statuses are restricted to the four supported values and returned consistently to the frontend.",
+        "Frontend reads/writes through backend calls (with React Query caching/invalidation) and data persists across refresh."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Display the provided motivational quote at the end of the primary user flow/interface (e.g., at the bottom of the Dashboard and/or as a dedicated closing section), using prominent styling consistent with the bold/adventurous theme.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Use this quote at the end: \"Embrace the challenges, celebrate your discoveries, and unlock your full learning potential. Your quest for knowledge awaits – go forth and conquer!\""
+        ]
+      },
+      "acceptanceCriteria": [
+        "The quote text appears exactly as provided (including punctuation and dash).",
+        "Quote is placed at the end of the interface/flow (visually bottom-most closing section on at least one main page)."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Add required generated static art assets to support the War Map/Battle Plan look, and render them in the UI from frontend/public/assets/generated (do not serve images from the backend).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "The design should look like a \"Strategic Battle Plan\" for students.",
+          "Make the interface look bold and adventurous!"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are stored under frontend/public/assets/generated and referenced directly by the frontend.",
+        "At least one generated background/hero image is visibly used in the app shell or dashboard without breaking readability.",
+        "No backend endpoints are used to fetch these static images."
+      ]
+    }
+  ],
+  "constraints": [
+    "Use only Internet Computer canister backend (Motoko) and a single-actor architecture for backend logic.",
+    "Do not edit files under frontend/src/components/ui or other immutablePaths defined by the system; only compose/consume those components.",
+    "Use English for all user-facing text."
+  ],
+  "nonGoals": [
+    "Do not add third-party authentication providers (only Internet Identity would be allowed, but it is not required for this request).",
+    "Do not implement real-time collaboration/chat, notifications, emails, or external database integrations."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Parchment-style war map background texture with subtle grid and compass rose (war-map-bg.dim_1920x1080.png)",
+      "Bold adventurous emblem/badge icon set: sword, shield, flag, compass (battle-icons.dim_512x512.png)",
+      "Wide header banner with \"Strategic Battle Plan\" aesthetic (battle-banner.dim_1600x400.png)"
+    ],
+    "edits": []
+  }
+}

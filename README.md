@@ -1,2 +1,3 @@
-# conquer-your-studies-your-epic-learning-journey
-Exported from Caffeine project: Conquer Your Studies: Your Epic Learning Journey
+## Conquer Your Studies: Your Epic Learning Journey
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`
