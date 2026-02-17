@@ -11,9 +11,9 @@
   "frontend/src/pages/DashboardWarMap.tsx": "War Map dashboard page displaying syllabus items as territory nodes in a grid layout with war map background texture and motivational quote at bottom.",
   "frontend/src/pages/DivideAndConquer.tsx": "Divide and Conquer page with two-column layout for creating new chapters and managing tasks for selected chapters with forms and task list.",
   "frontend/src/hooks/useQueries.ts": "React Query hooks for fetching syllabus items and mutations for creating items, adding tasks, and updating task status with automatic cache invalidation.",
-  "frontend/src/pages/PortalHome.tsx": "Landing page with giant pulsing \"START YOUR QUEST\" CTA button, dark-mode neon voxel aesthetic, space background, and navigation to World Map hub.",
+  "frontend/src/pages/PortalHome.tsx": "Landing page with NCW Adventures logo displayed prominently above the main heading, giant pulsing \"START YOUR QUEST\" CTA button, dark-mode neon voxel aesthetic, space background, and realm preview icons.",
   "frontend/src/components/AdventurePortalCard.tsx": "Reusable portal card component with 3D-styled neon glow, portal-specific colors, floating animation, mission text, and click handler for navigation.",
-  "frontend/src/components/GamificationHeader.tsx": "Persistent top header displaying glowing level progress bar, daily streak fire icon, coins counter with coin icon image, and Hall of Fame button across all non-landing screens.",
+  "frontend/src/components/GamificationHeader.tsx": "Persistent top header displaying NCW Adventures logo next to back button, glowing level progress bar, daily streak fire icon, coins counter with coin icon image, and Hall of Fame button across all non-landing screens.",
   "frontend/src/components/HallOfFameLeaderboard.tsx": "Modal dialog displaying leaderboard with rank icons (trophy/medal), user names from profiles, XP totals, and streak counts sorted by XP descending, using the correct useGetLeaderBoard hook import.",
   "frontend/src/components/PowerCard.tsx": "Compact card component for portal content with image tile, short description, optional icon, and action button styled with neon hover effects.",
   "frontend/src/pages/PortalScience.tsx": "Quantum Lab portal content screen with six Power Cards covering Physics/Chemistry topics and Boss Fight CTA styled with quantum-lab neon theme.",
@@ -33,5 +33,6 @@
   "frontend/src/pages/WorldMapHub.tsx": "Central World Map hub screen displaying three massive realm cards (THE QUANTUM GALAXY, THE INFINITY DUNGEON, THE CIVILIZATION QUEST) with neon styling and navigation to realm internal maps.",
   "frontend/src/pages/RealmQuantumGalaxy.tsx": "Science realm internal map showing 3 planets (Chemistry, Physics, Biology) with chapter mission nodes rendered as 3D icons, displaying locked/unlocked/completed states based on gamification data.",
   "frontend/src/pages/RealmInfinityDungeon.tsx": "Maths realm displaying 13 boss levels in a linear vertical path with numbered nodes, enforcing sequential unlocking where only the next incomplete chapter is playable.",
-  "frontend/src/pages/RealmCivilizationQuest.tsx": "SST realm showing 4 kingdoms (History Portal, Geography Portal, Civics Fortress, Economics Valley) with chapter nodes as 3D icons and locked/unlocked/completed states."
+  "frontend/src/pages/RealmCivilizationQuest.tsx": "SST realm showing 4 kingdoms (History Portal, Geography Portal, Civics Fortress, Economics Valley) with chapter nodes as 3D icons and locked/unlocked/completed states.",
+  "frontend/index.html": "HTML entry point with document title \"NCW Adventures\" and favicon/app icon links pointing to the NCW logo variants in multiple sizes for browser tab and PWA display."
 }

@@ -1,242 +1,76 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-17T13:58:58.792Z",
+  "generatedAt": "2026-02-17T15:50:51.636Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 12,
-    "implemented": 11,
+    "total": 4,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-10",
-        "summary": "Update the top HUD to include: a glowing level-up progress bar, a Daily Streak fire icon, and a visible Coins counter, and ensure it stays consistent across realm maps and boss fights.",
-        "status": "implemented",
+        "id": "REQ-1",
+        "summary": "Add the uploaded image file (1771343232477.png) to the frontend static assets and treat it as the official NCW Adventures logo, using a stable filename/path that can be referenced across the app.",
+        "status": "missing",
         "plannedFiles": [
-          "frontend/src/components/GamificationHeader.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/index.css"
+          "frontend/public/assets/branding/ncw-logo.png"
         ],
-        "matchedFiles": [
-          "frontend/src/components/GamificationHeader.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/index.css"
-        ]
-      },
-      {
-        "id": "REQ-11",
-        "summary": "Apply the requested subject color system consistently across the World Map, realm UIs, nodes, and Boss Fight screens: Science = neon green, Maths = neon gold, SST = neon red.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js",
-          "frontend/src/pages/WorldMapHub.tsx",
-          "frontend/src/pages/BossFight.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js",
-          "frontend/src/pages/WorldMapHub.tsx",
-          "frontend/src/pages/BossFight.tsx"
-        ]
-      },
-      {
-        "id": "REQ-12",
-        "summary": "Add a chapter/realm content model on the frontend that enumerates all chapters exactly as specified (Science planets/chapters, Maths linear chapters, SST kingdoms/chapters) and use it to drive the World Map and Boss Fight routing.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/lib/contentModel.ts",
-          "frontend/src/pages/RealmQuantumGalaxy.tsx",
-          "frontend/src/pages/RealmInfinityDungeon.tsx",
-          "frontend/src/pages/RealmCivilizationQuest.tsx",
-          "frontend/src/pages/BossFight.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/lib/contentModel.ts",
-          "frontend/src/pages/RealmQuantumGalaxy.tsx",
-          "frontend/src/pages/RealmInfinityDungeon.tsx",
-          "frontend/src/pages/RealmCivilizationQuest.tsx",
-          "frontend/src/pages/BossFight.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-13",
-        "summary": "Render generated image assets from the static public assets directory (frontend/public/assets/generated) for the World Map and key realm visuals, without routing images through the backend.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/public/assets/generated/world-map-hub.dim_1920x1080.png",
-          "frontend/public/assets/generated/realm-emblems-set.dim_1024x1024.png",
-          "frontend/public/assets/generated/science-planets-icons.dim_1024x1024.png",
-          "frontend/public/assets/generated/sst-kingdom-icons.dim_1024x1024.png",
-          "frontend/public/assets/generated/chapter-level-icons-pack.dim_2048x2048.png",
-          "frontend/public/assets/generated/chapter-mastery-medal.dim_512x512.png",
-          "frontend/public/assets/generated/coins-icon.dim_512x512.png",
-          "frontend/src/pages/WorldMapHub.tsx",
-          "frontend/src/pages/RealmQuantumGalaxy.tsx",
-          "frontend/src/pages/RealmCivilizationQuest.tsx",
-          "frontend/src/pages/BossFight.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/public/assets/generated/world-map-hub.dim_1920x1080.png",
-          "frontend/public/assets/generated/realm-emblems-set.dim_1024x1024.png",
-          "frontend/public/assets/generated/science-planets-icons.dim_1024x1024.png",
-          "frontend/public/assets/generated/sst-kingdom-icons.dim_1024x1024.png",
-          "frontend/public/assets/generated/chapter-level-icons-pack.dim_2048x2048.png",
-          "frontend/public/assets/generated/chapter-mastery-medal.dim_512x512.png",
-          "frontend/public/assets/generated/coins-icon.dim_512x512.png",
-          "frontend/src/pages/WorldMapHub.tsx",
-          "frontend/src/pages/RealmQuantumGalaxy.tsx",
-          "frontend/src/pages/RealmCivilizationQuest.tsx",
-          "frontend/src/pages/BossFight.tsx"
-        ]
+        "matchedFiles": []
       },
       {
         "id": "REQ-2",
-        "summary": "Update the landing experience to match the requested theme and CTA: dark-mode neon (Roblox x Minecraft-inspired) aesthetic and a giant pulsing main button labeled exactly \"START YOUR QUEST\".",
+        "summary": "Update the UI to display the NCW Adventures logo in user-visible locations: (1) the landing page (PortalHome) near the main heading, and (2) the in-app header (GamificationHeader) so it appears on all non-landing views.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/pages/PortalHome.tsx",
-          "frontend/src/index.css"
+          "frontend/src/components/GamificationHeader.tsx"
         ],
         "matchedFiles": [
           "frontend/src/pages/PortalHome.tsx",
-          "frontend/src/index.css"
+          "frontend/src/components/GamificationHeader.tsx"
         ]
       },
       {
         "id": "REQ-3",
-        "summary": "Add a central \"World Map\" navigation hub screen that presents exactly three Massive Realms and becomes the primary navigation entry point: (1) THE QUANTUM GALAXY (Science), (2) THE INFINITY DUNGEON (Mathematics), (3) THE CIVILIZATION QUEST (SST).",
+        "summary": "Set the app favicon/app icon to use the NCW Adventures logo by adding appropriate <link rel=\"icon\"> (and related) tags in frontend/index.html that point to logo-derived icon assets in frontend/public.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/WorldMapHub.tsx",
-          "frontend/src/App.tsx"
+          "frontend/index.html"
         ],
         "matchedFiles": [
-          "frontend/src/pages/WorldMapHub.tsx",
-          "frontend/src/App.tsx"
+          "frontend/index.html"
         ]
       },
       {
         "id": "REQ-4",
-        "summary": "Implement THE QUANTUM GALAXY (Science realm) structure on the frontend with 3 planets—Chemistry, Physics, Biology—and represent each requested chapter as an unlockable Mission Level with a distinct 3D icon.",
+        "summary": "Generate and include logo-derived icon image variants as static assets in frontend/public/assets/generated, suitable for favicon/app icon usage, using the provided uploaded logo as the source.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/RealmQuantumGalaxy.tsx",
-          "frontend/src/components/ThreeDLevelIcon.tsx",
-          "frontend/package.json",
-          "frontend/src/App.tsx"
+          "frontend/public/assets/generated/ncw-app-icon.dim_512x512.png",
+          "frontend/public/assets/generated/ncw-app-icon.dim_192x192.png",
+          "frontend/public/assets/generated/ncw-favicon.dim_32x32.png"
         ],
         "matchedFiles": [
-          "frontend/src/pages/RealmQuantumGalaxy.tsx",
-          "frontend/src/components/ThreeDLevelIcon.tsx",
-          "frontend/src/App.tsx"
+          "frontend/public/assets/generated/ncw-app-icon.dim_512x512.png",
+          "frontend/public/assets/generated/ncw-app-icon.dim_192x192.png",
+          "frontend/public/assets/generated/ncw-favicon.dim_32x32.png"
         ]
-      },
-      {
-        "id": "REQ-5",
-        "summary": "Implement THE INFINITY DUNGEON (Mathematics realm) as a linear path of Boss Levels covering every listed chapter, with clear progression and locking until prior levels are completed.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/RealmInfinityDungeon.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/RealmInfinityDungeon.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-6",
-        "summary": "Implement THE CIVILIZATION QUEST (SST realm) with 4 distinct Kingdoms—History Portal, Geography Portal, Civics/Pol Science Fortress, Economics Valley—and represent each listed chapter within its kingdom as an unlockable level node with a 3D icon.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/RealmCivilizationQuest.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/RealmCivilizationQuest.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-7",
-        "summary": "Update the Boss Fight experience so every chapter quiz is a \"Boss Fight\" tied to a specific chapter node (not just a subject-wide quiz list), with minimal text and an icon-forward \"Power Card\" presentation.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/BossFight.tsx",
-          "frontend/src/lib/bossFights.ts",
-          "frontend/src/components/PowerCard.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/BossFight.tsx",
-          "frontend/src/lib/bossFights.ts"
-        ]
-      },
-      {
-        "id": "REQ-8",
-        "summary": "Implement the requested reward rules end-to-end: winning a chapter Boss Fight awards exactly 500 XP, 50 Coins, and a \"Chapter Mastery Medal\" recorded for that specific chapter (and used to unlock subsequent levels).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/hooks/useGamificationQueries.ts",
-          "frontend/src/pages/BossFight.tsx",
-          "frontend/src/pages/RealmInfinityDungeon.tsx",
-          "frontend/src/pages/RealmQuantumGalaxy.tsx",
-          "frontend/src/pages/RealmCivilizationQuest.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/hooks/useGamificationQueries.ts",
-          "frontend/src/pages/BossFight.tsx",
-          "frontend/src/pages/RealmInfinityDungeon.tsx",
-          "frontend/src/pages/RealmQuantumGalaxy.tsx",
-          "frontend/src/pages/RealmCivilizationQuest.tsx"
-        ]
-      },
-      {
-        "id": "REQ-9",
-        "summary": "Extend the backend gamification model to include coins and chapter mastery tracking (per user, per chapter), and add backend methods needed by the frontend to: fetch a user’s coins + mastery/unlock state, and mark a chapter boss fight as completed with the fixed rewards.",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
       }
     ]
   },
   "changedFiles": [
-    "backend/main.mo",
-    "backend/migration.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/chapter-level-icons-pack.dim_2048x2048.png",
-    "frontend/public/assets/generated/chapter-mastery-medal.dim_512x512.png",
-    "frontend/public/assets/generated/coins-icon.dim_512x512.png",
-    "frontend/public/assets/generated/realm-emblems-set.dim_1024x1024.png",
-    "frontend/public/assets/generated/science-planets-icons.dim_1024x1024.png",
-    "frontend/public/assets/generated/sst-kingdom-icons.dim_1024x1024.png",
-    "frontend/public/assets/generated/world-map-hub.dim_1920x1080.png",
-    "frontend/src/App.tsx",
-    "frontend/src/backend.d.ts",
-    "frontend/src/backend.ts",
+    "frontend/index.html",
+    "frontend/public/assets/generated/ncw-app-icon.dim_192x192.png",
+    "frontend/public/assets/generated/ncw-app-icon.dim_512x512.png",
+    "frontend/public/assets/generated/ncw-favicon.dim_32x32.png",
     "frontend/src/components/GamificationHeader.tsx",
-    "frontend/src/components/HallOfFameLeaderboard.tsx",
-    "frontend/src/components/ThreeDLevelIcon.tsx",
-    "frontend/src/declarations/backend.did.d.ts",
-    "frontend/src/declarations/backend.did.js",
-    "frontend/src/hooks/useGamificationQueries.ts",
-    "frontend/src/index.css",
-    "frontend/src/lib/bossFights.ts",
-    "frontend/src/lib/contentModel.ts",
-    "frontend/src/pages/BossFight.tsx",
     "frontend/src/pages/PortalHome.tsx",
-    "frontend/src/pages/RealmCivilizationQuest.tsx",
-    "frontend/src/pages/RealmInfinityDungeon.tsx",
-    "frontend/src/pages/RealmQuantumGalaxy.tsx",
-    "frontend/src/pages/WorldMapHub.tsx",
-    "frontend/tailwind.config.js",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

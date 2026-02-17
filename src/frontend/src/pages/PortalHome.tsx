@@ -20,8 +20,17 @@ export default function PortalHome({ onStartQuest }: PortalHomeProps) {
             <Sparkles className="w-20 h-20 mx-auto text-accent mb-6" />
           </div>
           
+          {/* NCW Adventures Logo */}
+          <div className="flex justify-center mb-8">
+            <img 
+              src="/assets/branding/ncw-logo.png" 
+              alt="NCW Adventures logo"
+              className="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-2xl"
+            />
+          </div>
+          
           <h1 className="text-6xl md:text-8xl font-display font-bold neon-text leading-tight">
-            Class 9 Epic Adventure
+            NCW Adventures
           </h1>
           
           <p className="text-2xl md:text-3xl text-primary font-medium">

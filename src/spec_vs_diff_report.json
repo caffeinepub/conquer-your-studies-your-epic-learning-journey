@@ -1,118 +1,51 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-17T13:58:58.788Z",
-  "summary": "Diff implements the neon landing CTA, a 3-realm World Map hub using a generated background, three realm map screens with 3D level icons, a chapter-driven content model, a boss-fight flow tied to chapter IDs, and gamification header elements (XP progress, streak, coins). However, several requirements are only partially met or lack evidence: Science/SST unlock progression rules, medal/mastery UX, fixed reward enforcement and idempotency in backend, exact SST kingdom naming, and presence of all required generated image assets under public.",
+  "generatedAt": "2026-02-17T15:50:51.633Z",
+  "summary": "UI and index.html were updated to reference a stable logo path and new favicon/app-icon links, but the required static image assets (logo file and generated icon variants) are not shown as added/updated in the diff. Additionally, an unrequested coins icon asset reference and an incorrect extra feature request entry appear in the changes.",
   "missing_requirements": [
     {
+      "id": "REQ-1",
+      "requirement": "Add the uploaded image file (1771343232477.png) to the frontend static assets under a stable path in frontend/public, accessible via /assets/... URL.",
+      "reason": "The UI now references a stable path (/assets/branding/ncw-logo.png), but the diff shows no added files under frontend/public (Added: 0), so the actual logo asset copy/rename is not evidenced.",
+      "evidence": [
+        "frontend/src/components/GamificationHeader.tsx (src=\"/assets/branding/ncw-logo.png\")",
+        "frontend/src/pages/PortalHome.tsx (src=\"/assets/branding/ncw-logo.png\")",
+        "file-diff summary: \"Added: 0\""
+      ]
+    },
+    {
       "id": "REQ-4",
-      "requirement": "Locked vs unlocked levels are visually differentiated for Science mission levels.",
-      "reason": "Science realm hard-codes all chapters as unlocked, so there is no locked/unlocked differentiation or unlock progression behavior for Science mission nodes.",
+      "requirement": "Generate and include logo-derived icon variants in frontend/public/assets/generated with exact filenames: ncw-app-icon.dim_512x512.png, ncw-app-icon.dim_192x192.png, ncw-favicon.dim_32x32.png.",
+      "reason": "frontend/index.html references these files, but the diff shows no added static assets (Added: 0) and no evidence that these images exist in frontend/public/assets/generated.",
       "evidence": [
-        "frontend/src/pages/RealmQuantumGalaxy.tsx"
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "requirement": "SST realm must have 4 distinct Kingdoms named exactly: History Portal, Geography Portal, Civics/Pol Science Fortress, Economics Valley; chapters must be unlockable with locked/unlocked states.",
-      "reason": "RealmCivilizationQuest renders kingdoms from `sstKingdoms` and uses `kingdom.displayName`, but the diff does not show those exact required names. It also hard-codes all SST chapters as unlocked, so there is no locked/unlocked progression for SST.",
-      "evidence": [
-        "frontend/src/pages/RealmCivilizationQuest.tsx",
-        "frontend/src/lib/contentModel.ts"
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "requirement": "Boss Fight UI should be icon-forward \"Power Card\" presentation with minimal text and concise, card-based UI with icons/animations.",
-      "reason": "BossFight uses a standard RadioGroup with text options/questions; the diff does not show an icon-forward Power Card UI for questions/options.",
-      "evidence": [
-        "frontend/src/pages/BossFight.tsx"
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "requirement": "Winning a chapter Boss Fight awards exactly 500 XP, 50 Coins, and a \"Chapter Mastery Medal\" recorded per chapter; frontend shows victory summary including XP, coins, and a medal; completion unlocks subsequent nodes (linear for Maths; next/available for Science/SST).",
-      "reason": "Frontend triggers completion with `earnedXp: BigInt(500)` but does not show evidence of a medal being displayed/earned in the victory UI. Also Science/SST unlocking is not implemented (all chapters unlocked from the start), so completion does not unlock subsequent nodes for those realms.",
-      "evidence": [
-        "frontend/src/pages/BossFight.tsx",
-        "frontend/src/pages/RealmQuantumGalaxy.tsx",
-        "frontend/src/pages/RealmCivilizationQuest.tsx"
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "requirement": "Backend must expose query returning caller coins and chapter completion/mastery status, and a shared method to complete a specific chapter boss fight applying exactly 500 XP and 50 coins, recording mastery per chapter, and preventing repeat reward claims (idempotent/guarded).",
-      "reason": "Backend types add `coins` and `completedChapters`, but the diff is truncated and does not provide evidence that `completeBossFight` enforces fixed rewards (it appears to accept an `earnedXp` argument from the frontend) or that it is idempotent/guarded against repeated rewards for the same chapter.",
-      "evidence": [
-        "backend/main.mo",
-        "frontend/src/hooks/useGamificationQueries.ts"
-      ]
-    },
-    {
-      "id": "REQ-12",
-      "requirement": "Enumerate all chapters exactly as specified (no missing chapters, no extras) and drive all routing from the single content model.",
-      "reason": "The content model file is truncated; SST chapter list is visibly incomplete in the diff excerpt, so there is not enough evidence that all user-listed chapters are present with no extras.",
-      "evidence": [
-        "frontend/src/lib/contentModel.ts"
-      ]
-    },
-    {
-      "id": "REQ-13",
-      "requirement": "All required generated images are stored and referenced under frontend/public/assets/generated and visibly used on World Map and realm screens.",
-      "reason": "Code references at least some generated assets (e.g., world-map background, coins icon), but the diff summary does not show the actual image files added under `frontend/public/assets/generated`, nor evidence that all required assets listed in the BuildRequest are present/used (realm emblems set, science planets icons set, SST kingdom icons set, chapter-level icons pack, chapter mastery medal, etc.).",
-      "evidence": [
-        "frontend/src/pages/WorldMapHub.tsx",
-        "frontend/src/components/GamificationHeader.tsx",
-        "frontend/src/pages/BossFight.tsx"
+        "frontend/index.html (href=\"/assets/generated/ncw-favicon.dim_32x32.png\", \"/assets/generated/ncw-app-icon.dim_192x192.png\", \"/assets/generated/ncw-app-icon.dim_512x512.png\")",
+        "file-diff summary: \"Added: 0\""
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Added/expanded \"War Map\" dashboard, syllabus-item territory nodes, task management (Divide and Conquer), and related components not requested in the BuildRequest.",
-      "reason": "BuildRequest focuses on World Map realms, chapter unlocks, boss fights, and rewards; the diff summary lists new/updated War Map + syllabus/task management pages/components that are outside scope.",
+      "description": "Added/used a coins icon image at /assets/generated/coins-icon.dim_512x512.png in the header.",
+      "reason": "The BuildRequest only asked to add the NCW logo and logo-derived favicon/app-icon variants; it did not request introducing a new coins icon asset reference.",
       "evidence": [
-        "frontend-file-summaries.txt"
+        "frontend/src/components/GamificationHeader.tsx (src=\"/assets/generated/coins-icon.dim_512x512.png\")"
       ]
     },
     {
-      "description": "Hall of Fame leaderboard modal and related UI/queries beyond the requested features.",
-      "reason": "Leaderboard/Hall of Fame is not included in REQ-2 through REQ-13; it appears as an additional feature.",
+      "description": "Introduced a new pending request entry to remove/delete previously published versions/releases.",
+      "reason": "This contradicts the stated Non-goal: \"Deleting or removing previously published versions/releases.\" The change appears as a new_feature_requests item in project_state.json.",
       "evidence": [
-        "frontend/src/components/HallOfFameLeaderboard.tsx",
-        "frontend/src/App.tsx",
-        "frontend/src/components/GamificationHeader.tsx",
-        "frontend/src/hooks/useGamificationQueries.ts"
-      ]
-    },
-    {
-      "description": "Backend authorization/access-control system and admin-gated syllabus management appear expanded beyond the requested gamification changes.",
-      "reason": "REQ-9 only requests coins + chapter mastery tracking and boss-fight completion methods; the diff shows extensive AccessControl/MixinAuthorization usage and admin-only syllabus management methods.",
-      "evidence": [
-        "backend/main.mo"
+        "project_state.json (new_feature_requests: AR-1 \"Remove/delete previously published versions/releases as requested by user\")"
       ]
     }
   ],
-  "confidence": 0.68,
+  "confidence": 0.78,
   "changed_files": [
-    "backend/main.mo",
-    "backend/migration.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/App.tsx",
+    "frontend/index.html",
     "frontend/src/components/GamificationHeader.tsx",
-    "frontend/src/components/HallOfFameLeaderboard.tsx",
-    "frontend/src/components/ThreeDLevelIcon.tsx",
-    "frontend/src/hooks/useGamificationQueries.ts",
-    "frontend/src/index.css",
-    "frontend/src/lib/bossFights.ts",
-    "frontend/src/lib/contentModel.ts",
-    "frontend/src/pages/BossFight.tsx",
     "frontend/src/pages/PortalHome.tsx",
-    "frontend/src/pages/RealmCivilizationQuest.tsx",
-    "frontend/src/pages/RealmInfinityDungeon.tsx",
-    "frontend/src/pages/RealmQuantumGalaxy.tsx",
-    "frontend/src/pages/WorldMapHub.tsx",
-    "frontend/tailwind.config.js",
     "project_state.json"
   ]
 }

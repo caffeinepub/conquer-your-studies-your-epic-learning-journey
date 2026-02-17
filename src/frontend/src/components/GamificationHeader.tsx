@@ -25,16 +25,23 @@ export default function GamificationHeader({ onHallOfFameClick, onBackClick }: G
     <header className="sticky top-0 z-50 border-b border-primary/20 bg-card/95 backdrop-blur-md shadow-neon">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4 flex-wrap">
-          {/* Back Button */}
-          <Button 
-            variant="ghost" 
-            size="sm"
-            onClick={onBackClick}
-            className="hover:text-primary"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back
-          </Button>
+          {/* Logo and Back Button */}
+          <div className="flex items-center gap-3">
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={onBackClick}
+              className="hover:text-primary"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back
+            </Button>
+            <img 
+              src="/assets/branding/ncw-logo.png" 
+              alt="NCW Adventures logo"
+              className="w-10 h-10 object-contain"
+            />
+          </div>
 
           {/* Level Progress with Glow */}
           <div className="flex-1 min-w-[200px] max-w-md">

@@ -1,250 +1,94 @@
 {
   "kind": "build_request",
-  "title": "Class 9 Epic Adventure: World Map Realms, Chapter Unlocks, and Boss-Fight Rewards",
-  "projectName": "Class 9 Epic Adventure",
+  "title": "Set uploaded image as NCW Adventures logo (UI + favicon)",
+  "projectName": "NCW Adventures",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-2",
-      "text": "Update the landing experience to match the requested theme and CTA: dark-mode neon (Roblox x Minecraft-inspired) aesthetic and a giant pulsing main button labeled exactly \"START YOUR QUEST\".",
+      "id": "REQ-1",
+      "text": "Add the uploaded image file (1771343232477.png) to the frontend static assets and treat it as the official NCW Adventures logo, using a stable filename/path that can be referenced across the app.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-10"
         ],
         "quotes": [
-          "Main CTA: A giant pulsing 'START YOUR QUEST' button on the landing page."
+          "Please set this image as the logo for my NCW Adventures app."
         ]
       },
       "acceptanceCriteria": [
-        "On the initial landing screen, the primary CTA text is exactly \"START YOUR QUEST\".",
-        "The CTA uses a clearly visible pulsing animation and is visually dominant on the page.",
-        "The overall landing visuals are consistent with a dark-mode neon, blocky/game-inspired style."
+        "The repository contains the uploaded image copied into frontend/public under a stable path (not dependent on the upload filename).",
+        "The logo can be loaded by the browser via a direct /assets/... URL without going through the backend."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Update the UI to display the NCW Adventures logo in user-visible locations: (1) the landing page (PortalHome) near the main heading, and (2) the in-app header (GamificationHeader) so it appears on all non-landing views.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-10"
+        ],
+        "quotes": [
+          "Please set this image as the logo for my NCW Adventures app."
+        ]
+      },
+      "acceptanceCriteria": [
+        "On the landing screen, the logo is visible and does not overlap the existing hero content (title, subtitle, CTA).",
+        "On non-landing screens, the header shows the logo alongside the existing header controls without breaking layout on mobile.",
+        "All logo <img> tags include English alt text (e.g., \"NCW Adventures logo\")."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Add a central \"World Map\" navigation hub screen that presents exactly three Massive Realms and becomes the primary navigation entry point: (1) THE QUANTUM GALAXY (Science), (2) THE INFINITY DUNGEON (Mathematics), (3) THE CIVILIZATION QUEST (SST).",
+      "text": "Set the app favicon/app icon to use the NCW Adventures logo by adding appropriate <link rel=\"icon\"> (and related) tags in frontend/index.html that point to logo-derived icon assets in frontend/public.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-10"
         ],
         "quotes": [
-          "Create a central 'World Map' that contains the following 3 Massive Realms:"
+          "Please set this image as the logo for my NCW Adventures app."
         ]
       },
       "acceptanceCriteria": [
-        "A dedicated World Map view exists and is reachable from the landing CTA.",
-        "The World Map displays three distinct, labeled realms: THE QUANTUM GALAXY, THE INFINITY DUNGEON, THE CIVILIZATION QUEST.",
-        "Each realm is clickable/tappable and routes the user to that realm’s internal map (planet/path/kingdom view)."
+        "frontend/index.html includes favicon/app icon links pointing to the logo-derived icon files.",
+        "When the app is loaded, the browser tab/favicon displays the new NCW Adventures logo (subject to browser caching)."
       ]
     },
     {
       "id": "REQ-4",
-      "text": "Implement THE QUANTUM GALAXY (Science realm) structure on the frontend with 3 planets—Chemistry, Physics, Biology—and represent each requested chapter as an unlockable Mission Level with a distinct 3D icon.",
+      "text": "Generate and include logo-derived icon image variants as static assets in frontend/public/assets/generated, suitable for favicon/app icon usage, using the provided uploaded logo as the source.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-10"
         ],
         "quotes": [
-          "Divide into 3 Planets: Chemistry (Matter, Atoms, Molecules), Physics (Motion, Force, Gravitation, Work, Energy, Sound), and Biology (Cell, Tissues, Diversity, Improvement in Food Resources). Each chapter must be an unlockable 'Mission Level' with a 3D icon."
+          "Please set this image as the logo for my NCW Adventures app."
         ]
       },
       "acceptanceCriteria": [
-        "Science realm view shows exactly 3 planets: Chemistry, Physics, Biology.",
-        "Each listed Science chapter appears as its own Mission Level node under the correct planet.",
-        "Each Mission Level node shows a 3D-styled icon (rendered with Three.js/React Three Fiber or equivalent 3D presentation).",
-        "Locked vs unlocked levels are visually differentiated."
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Implement THE INFINITY DUNGEON (Mathematics realm) as a linear path of Boss Levels covering every listed chapter, with clear progression and locking until prior levels are completed.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "A linear path of 'Boss Levels' covering EVERY chapter: Number Systems, Polynomials, Coordinate Geometry, Linear Equations, Euclid’s Geometry, Lines & Angles, Triangles, Quadrilaterals, Circles, Heron’s Formula, Surface Areas & Volumes, Statistics, and Probability."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Maths realm view displays a single linear sequence of Boss Level nodes for all listed chapters in the user-provided order.",
-        "Only the next available node is playable when prior nodes are incomplete; future nodes show as locked.",
-        "Selecting an unlocked node navigates to the corresponding Boss Fight quiz for that chapter."
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Implement THE CIVILIZATION QUEST (SST realm) with 4 distinct Kingdoms—History Portal, Geography Portal, Civics/Pol Science Fortress, Economics Valley—and represent each listed chapter within its kingdom as an unlockable level node with a 3D icon.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Create 4 distinct Kingdoms: * History Portal: (French Revolution, Russian Revolution, Nazism, Forest Society, Pastoralists). * Geography Portal: (India's Size, Physical Features, Drainage, Climate, Vegetation, Population). * Civics/Pol Science Fortress: (What is Democracy, Constitutional Design, Electoral Politics, Institutions, Democratic Rights). * Economics Valley: (Palampur Story, People as Resource, Poverty, Food Security)."
-        ]
-      },
-      "acceptanceCriteria": [
-        "SST realm view shows exactly 4 kingdoms with the specified names.",
-        "Each listed SST chapter appears as its own unlockable node in the correct kingdom.",
-        "Each chapter node displays a 3D-styled icon and a locked/unlocked state."
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "text": "Update the Boss Fight experience so every chapter quiz is a \"Boss Fight\" tied to a specific chapter node (not just a subject-wide quiz list), with minimal text and an icon-forward \"Power Card\" presentation.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Interaction: Every chapter quiz is a 'Boss Fight'.",
-          "No long text—use 'Power Cards' with icons and animations."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Starting a Boss Fight always includes the chapter identity (e.g., Maths → Circles) and displays it in the UI.",
-        "Boss Fight screens avoid long paragraphs; questions and options are presented in concise, card-based UI with icons/animations.",
-        "Completing a chapter Boss Fight returns the user to the realm map with that chapter marked completed/unlocked progression updated."
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "text": "Implement the requested reward rules end-to-end: winning a chapter Boss Fight awards exactly 500 XP, 50 Coins, and a \"Chapter Mastery Medal\" recorded for that specific chapter (and used to unlock subsequent levels).",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Winning gives 500 XP, 50 Coins, and a 'Chapter Mastery Medal'."
-        ]
-      },
-      "acceptanceCriteria": [
-        "On a successful Boss Fight completion, backend state reflects +500 XP and +50 coins for the caller.",
-        "A per-chapter mastery/medal record is persisted for the caller and chapter.",
-        "Frontend shows a clear victory summary including XP, coins, and a medal earned.",
-        "Chapter completion unlocks the next appropriate node (linear for Maths; next/available nodes for Science/SST)."
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "text": "Extend the backend gamification model to include coins and chapter mastery tracking (per user, per chapter), and add backend methods needed by the frontend to: fetch a user’s coins + mastery/unlock state, and mark a chapter boss fight as completed with the fixed rewards.",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Winning gives 500 XP, 50 Coins, and a 'Chapter Mastery Medal'.",
-          "Each chapter must be an unlockable 'Mission Level'"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend exposes a query that returns the caller’s coins and chapter completion/mastery status.",
-        "Backend exposes a shared method to complete a specific chapter boss fight that applies exactly 500 XP and 50 coins and records mastery for that chapter.",
-        "Backend prevents completing the same chapter multiple times from repeatedly granting rewards (idempotent or guarded behavior)."
-      ]
-    },
-    {
-      "id": "REQ-10",
-      "text": "Update the top HUD to include: a glowing level-up progress bar, a Daily Streak fire icon, and a visible Coins counter, and ensure it stays consistent across realm maps and boss fights.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Stats: Top-header with a glowing Level-Up bar and a Daily Streak fire icon."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Header shows level progress with a clearly glowing progress bar.",
-        "Header shows daily streak with a fire icon.",
-        "Header shows a coins counter sourced from backend state.",
-        "Header appears on all non-landing screens and updates after boss fight completion."
-      ]
-    },
-    {
-      "id": "REQ-11",
-      "text": "Apply the requested subject color system consistently across the World Map, realm UIs, nodes, and Boss Fight screens: Science = neon green, Maths = neon gold, SST = neon red.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "UI Style: Use neon green for Science, neon gold for Maths, and neon red for SST."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Science UI elements (realm title, nodes, accents) use a neon green theme.",
-        "Maths UI elements use a neon gold theme.",
-        "SST UI elements use a neon red theme.",
-        "No subject uses mismatched primary accent colors in the realm/map and boss-fight flows."
-      ]
-    },
-    {
-      "id": "REQ-12",
-      "text": "Add a chapter/realm content model on the frontend that enumerates all chapters exactly as specified (Science planets/chapters, Maths linear chapters, SST kingdoms/chapters) and use it to drive the World Map and Boss Fight routing.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Divide into 3 Planets...",
-          "A linear path of 'Boss Levels' covering EVERY chapter...",
-          "Create 4 distinct Kingdoms..."
-        ]
-      },
-      "acceptanceCriteria": [
-        "All user-listed chapters appear in the UI (no missing chapters, no extras).",
-        "Selecting any chapter node launches the correct Boss Fight flow for that chapter.",
-        "The UI structure (planets/path/kingdoms) is generated from a single source-of-truth content model to avoid inconsistencies."
-      ]
-    },
-    {
-      "id": "REQ-13",
-      "text": "Render generated image assets from the static public assets directory (frontend/public/assets/generated) for the World Map and key realm visuals, without routing images through the backend.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All new generated images are stored and referenced as static files under frontend/public/assets/generated.",
-        "No backend endpoints are used for serving images.",
-        "World Map and realm screens visibly use the new generated assets."
+        "The icon variants listed in Image Requirements are present in frontend/public/assets/generated with the exact filenames specified.",
+        "The generated icons are visually centered and legible at small sizes (especially 32x32)."
       ]
     }
   ],
   "constraints": [
-    "Backend must remain a single Motoko actor in backend/main.mo (no additional backend services).",
-    "Do not edit files under frontend/src/components/ui or any paths listed as immutable in SYSTEM_CONTEXT.",
-    "Use English for all user-facing text."
+    "Do not edit any files under frontend/src/components/ui (Shadcn components are read-only).",
+    "Do not modify frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, or frontend/src/main.tsx (immutable paths).",
+    "Do not add any backend changes; logo handling must be frontend-only static assets."
   ],
   "nonGoals": [
-    "Third-party authentication providers (only Internet Identity if auth is needed).",
-    "External databases or off-chain storage systems.",
-    "Real-time multiplayer or WebSocket-based features."
+    "Deleting or removing previously published versions/releases.",
+    "Changing the app name text (it is already set to \"NCW Adventures\").",
+    "Adding new authentication methods or external integrations."
   ],
   "imageRequirements": {
     "required": [
-      "Central world map background in a dark neon voxel style with three distinct realm landmarks (world-map-hub.dim_1920x1080.png)",
-      "Three realm emblem icons in a consistent 3D neon voxel style: Quantum Galaxy, Infinity Dungeon, Civilization Quest (realm-emblems-set.dim_1024x1024.png)",
-      "Science planet icon set (Chemistry, Physics, Biology) in 3D neon voxel style (science-planets-icons.dim_1024x1024.png)",
-      "SST kingdom icon set (History, Geography, Civics/Pol Science, Economics) in 3D neon voxel style (sst-kingdom-icons.dim_1024x1024.png)",
-      "Pack of chapter level 3D icons (generic but varied) in neon voxel style (chapter-level-icons-pack.dim_2048x2048.png)",
-      "Chapter Mastery Medal icon in neon voxel style (chapter-mastery-medal.dim_512x512.png)",
-      "Coins icon in neon voxel style (coins-icon.dim_512x512.png)"
+      "Square app icon showing the provided gold NCW emblem centered, optimized for high-resolution app icon use (ncw-app-icon.dim_512x512.png)",
+      "Square app icon showing the provided gold NCW emblem centered, optimized for PWA/launcher use (ncw-app-icon.dim_192x192.png)",
+      "Favicon-sized square icon showing the provided gold NCW emblem centered and legible at small size (ncw-favicon.dim_32x32.png)"
     ],
     "edits": []
   },
