@@ -10,6 +10,13 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
+export interface GamificationStateView {
+  'xp' : bigint,
+  'completedChapters' : Array<string>,
+  'lastActivity' : Time,
+  'coins' : bigint,
+  'dailyStreak' : bigint,
+}
 export type Status = { 'tacticalDrills' : null } |
   { 'victoryZone' : null } |
   { 'missionCritical' : null } |
@@ -23,11 +30,37 @@ export interface SyllabusItem {
   'description' : string,
   'chapter' : string,
 }
+export type Time = bigint;
+export interface UserProfile { 'name' : string }
+export type UserRole = { 'admin' : null } |
+  { 'user' : null } |
+  { 'guest' : null };
 export interface _SERVICE {
+  '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'addTaskToSyllabusItem' : ActorMethod<[string, string], undefined>,
+  'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
+  'completeBossFight' : ActorMethod<[bigint, string], undefined>,
   'createSyllabusItem' : ActorMethod<[string, string, string], string>,
+  'getAllGamificationStates' : ActorMethod<
+    [],
+    Array<[Principal, GamificationStateView]>
+  >,
   'getAllSyllabusItems' : ActorMethod<[], Array<SyllabusItem>>,
+  'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
+  'getCallerUserRole' : ActorMethod<[], UserRole>,
+  'getGamificationState' : ActorMethod<
+    [Principal],
+    [] | [GamificationStateView]
+  >,
+  'getLeaderBoard' : ActorMethod<
+    [bigint],
+    Array<[Principal, GamificationStateView]>
+  >,
   'getSyllabusItem' : ActorMethod<[string], SyllabusItem>,
+  'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
+  'initializeChapterRewards' : ActorMethod<[Array<string>], undefined>,
+  'isCallerAdmin' : ActorMethod<[], boolean>,
+  'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
   'updateTaskStatus' : ActorMethod<[string, bigint, Status], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;

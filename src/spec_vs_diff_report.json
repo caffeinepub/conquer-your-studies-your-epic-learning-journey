@@ -1,93 +1,117 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-12T14:46:55.006Z",
-  "summary": "The diff implements a tabbed app shell with two main pages, a battle/war-map themed UI with status color mapping, a War Map dashboard rendering syllabus items as cards, and a Divide & Conquer page with React Query hooks wired to a Motoko canister. However, key requirements around task CRUD/completion semantics, required static generated image assets, and the exact motivational quote text are not fully met based on the provided diff summary.",
+  "generatedAt": "2026-02-17T13:58:58.788Z",
+  "summary": "Diff implements the neon landing CTA, a 3-realm World Map hub using a generated background, three realm map screens with 3D level icons, a chapter-driven content model, a boss-fight flow tied to chapter IDs, and gamification header elements (XP progress, streak, coins). However, several requirements are only partially met or lack evidence: Science/SST unlock progression rules, medal/mastery UX, fixed reward enforcement and idempotency in backend, exact SST kingdom naming, and presence of all required generated image assets under public.",
   "missing_requirements": [
     {
-      "id": "REQ-3",
-      "requirement": "Dashboard renders syllabus items in a map-like layout (nodes/tiles connected or arranged as territories).",
-      "reason": "The dashboard renders items in a standard responsive grid of cards; no evidence of connected nodes/territory/map-like structure beyond a background texture.",
-      "evidence": [
-        "frontend/src/pages/DashboardWarMap.tsx"
-      ]
-    },
-    {
       "id": "REQ-4",
-      "requirement": "Divide and Conquer supports create, view, update, and mark tasks as completed (moving them into Victory Zone) with completion reflected per task.",
-      "reason": "Backend and UI treat status as a single status on the syllabus item, not per-task. There is no per-task completion state; updating a task \"status\" updates the parent item status and isCompleted flag, and tasks are stored only as [Text].",
+      "requirement": "Locked vs unlocked levels are visually differentiated for Science mission levels.",
+      "reason": "Science realm hard-codes all chapters as unlocked, so there is no locked/unlocked differentiation or unlock progression behavior for Science mission nodes.",
       "evidence": [
-        "backend/main.mo",
-        "frontend/src/components/TaskList.tsx",
-        "frontend/src/hooks/useQueries.ts"
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "requirement": "Backend provides methods to list tasks by chapter/topic and create/update/complete tasks with statuses restricted to the four supported values.",
-      "reason": "Backend exposes getAllSyllabusItems/getSyllabusItem, createSyllabusItem, addTaskToSyllabusItem, and updateTaskStatus, but tasks are plain text entries with no task IDs/status; there are no explicit methods to list tasks by chapter/topic, update task text, or complete individual tasks.",
-      "evidence": [
-        "backend/main.mo"
+        "frontend/src/pages/RealmQuantumGalaxy.tsx"
       ]
     },
     {
       "id": "REQ-6",
-      "requirement": "Motivational quote appears exactly as provided (including punctuation and dash) at the end of the flow.",
-      "reason": "A quote is displayed, but the BuildRequest’s exact quote text is not present in the request content, and the implemented quote includes line breaks and different punctuation (including an en dash). Cannot verify it matches “exactly as provided.”",
+      "requirement": "SST realm must have 4 distinct Kingdoms named exactly: History Portal, Geography Portal, Civics/Pol Science Fortress, Economics Valley; chapters must be unlockable with locked/unlocked states.",
+      "reason": "RealmCivilizationQuest renders kingdoms from `sstKingdoms` and uses `kingdom.displayName`, but the diff does not show those exact required names. It also hard-codes all SST chapters as unlocked, so there is no locked/unlocked progression for SST.",
       "evidence": [
-        "frontend/src/components/MotivationalQuote.tsx",
-        "frontend/src/pages/DashboardWarMap.tsx"
+        "frontend/src/pages/RealmCivilizationQuest.tsx",
+        "frontend/src/lib/contentModel.ts"
       ]
     },
     {
       "id": "REQ-7",
-      "requirement": "Add the required generated static art assets under frontend/public/assets/generated (war-map background, battle icons set, and header banner) and render them from there.",
-      "reason": "Frontend references banner and war-map background paths, but the diff does not show the required image files being added under frontend/public/assets/generated, and there is no evidence the required icon set image is added/used.",
+      "requirement": "Boss Fight UI should be icon-forward \"Power Card\" presentation with minimal text and concise, card-based UI with icons/animations.",
+      "reason": "BossFight uses a standard RadioGroup with text options/questions; the diff does not show an icon-forward Power Card UI for questions/options.",
       "evidence": [
-        "frontend/src/App.tsx",
-        "frontend/src/index.css"
+        "frontend/src/pages/BossFight.tsx"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Winning a chapter Boss Fight awards exactly 500 XP, 50 Coins, and a \"Chapter Mastery Medal\" recorded per chapter; frontend shows victory summary including XP, coins, and a medal; completion unlocks subsequent nodes (linear for Maths; next/available for Science/SST).",
+      "reason": "Frontend triggers completion with `earnedXp: BigInt(500)` but does not show evidence of a medal being displayed/earned in the victory UI. Also Science/SST unlocking is not implemented (all chapters unlocked from the start), so completion does not unlock subsequent nodes for those realms.",
+      "evidence": [
+        "frontend/src/pages/BossFight.tsx",
+        "frontend/src/pages/RealmQuantumGalaxy.tsx",
+        "frontend/src/pages/RealmCivilizationQuest.tsx"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "requirement": "Backend must expose query returning caller coins and chapter completion/mastery status, and a shared method to complete a specific chapter boss fight applying exactly 500 XP and 50 coins, recording mastery per chapter, and preventing repeat reward claims (idempotent/guarded).",
+      "reason": "Backend types add `coins` and `completedChapters`, but the diff is truncated and does not provide evidence that `completeBossFight` enforces fixed rewards (it appears to accept an `earnedXp` argument from the frontend) or that it is idempotent/guarded against repeated rewards for the same chapter.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useGamificationQueries.ts"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "requirement": "Enumerate all chapters exactly as specified (no missing chapters, no extras) and drive all routing from the single content model.",
+      "reason": "The content model file is truncated; SST chapter list is visibly incomplete in the diff excerpt, so there is not enough evidence that all user-listed chapters are present with no extras.",
+      "evidence": [
+        "frontend/src/lib/contentModel.ts"
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "requirement": "All required generated images are stored and referenced under frontend/public/assets/generated and visibly used on World Map and realm screens.",
+      "reason": "Code references at least some generated assets (e.g., world-map background, coins icon), but the diff summary does not show the actual image files added under `frontend/public/assets/generated`, nor evidence that all required assets listed in the BuildRequest are present/used (realm emblems set, science planets icons set, SST kingdom icons set, chapter-level icons pack, chapter mastery medal, etc.).",
+      "evidence": [
+        "frontend/src/pages/WorldMapHub.tsx",
+        "frontend/src/components/GamificationHeader.tsx",
+        "frontend/src/pages/BossFight.tsx"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Internet Identity authentication/provider plumbing added (AuthClient context, identity-aware actor creation).",
-      "reason": "Authentication was explicitly “not required for this request.” While Internet Identity is allowed, adding the full provider/login infrastructure is additional scope not requested by the requirements list.",
+      "description": "Added/expanded \"War Map\" dashboard, syllabus-item territory nodes, task management (Divide and Conquer), and related components not requested in the BuildRequest.",
+      "reason": "BuildRequest focuses on World Map realms, chapter unlocks, boss fights, and rewards; the diff summary lists new/updated War Map + syllabus/task management pages/components that are outside scope.",
       "evidence": [
-        "frontend/src/hooks/useInternetIdentity.ts",
-        "frontend/src/hooks/useActor.ts",
-        "frontend/src/main.tsx"
+        "frontend-file-summaries.txt"
       ]
     },
     {
-      "description": "Caffeine.ai attribution/footer link added.",
-      "reason": "Not requested in any requirement or acceptance criteria.",
+      "description": "Hall of Fame leaderboard modal and related UI/queries beyond the requested features.",
+      "reason": "Leaderboard/Hall of Fame is not included in REQ-2 through REQ-13; it appears as an additional feature.",
       "evidence": [
-        "frontend/src/App.tsx"
+        "frontend/src/components/HallOfFameLeaderboard.tsx",
+        "frontend/src/App.tsx",
+        "frontend/src/components/GamificationHeader.tsx",
+        "frontend/src/hooks/useGamificationQueries.ts"
+      ]
+    },
+    {
+      "description": "Backend authorization/access-control system and admin-gated syllabus management appear expanded beyond the requested gamification changes.",
+      "reason": "REQ-9 only requests coins + chapter mastery tracking and boss-fight completion methods; the diff shows extensive AccessControl/MixinAuthorization usage and admin-only syllabus management methods.",
+      "evidence": [
+        "backend/main.mo"
       ]
     }
   ],
-  "confidence": 0.74,
+  "confidence": 0.68,
   "changed_files": [
-    "all_files_summary.json",
     "backend/main.mo",
+    "backend/migration.mo",
     "frontend-file-summaries.txt",
-    "frontend/index.css",
-    "frontend/index.html",
     "frontend/src/App.tsx",
-    "frontend/src/components/MotivationalQuote.tsx",
-    "frontend/src/components/StatusBadge.tsx",
-    "frontend/src/components/SyllabusItemSelector.tsx",
-    "frontend/src/components/TaskList.tsx",
-    "frontend/src/components/WarMapNode.tsx",
-    "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useInternetIdentity.ts",
-    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/components/GamificationHeader.tsx",
+    "frontend/src/components/HallOfFameLeaderboard.tsx",
+    "frontend/src/components/ThreeDLevelIcon.tsx",
+    "frontend/src/hooks/useGamificationQueries.ts",
     "frontend/src/index.css",
-    "frontend/src/lib/statusTheme.ts",
-    "frontend/src/main.tsx",
-    "frontend/src/pages/DashboardWarMap.tsx",
-    "frontend/src/pages/DivideAndConquer.tsx",
+    "frontend/src/lib/bossFights.ts",
+    "frontend/src/lib/contentModel.ts",
+    "frontend/src/pages/BossFight.tsx",
+    "frontend/src/pages/PortalHome.tsx",
+    "frontend/src/pages/RealmCivilizationQuest.tsx",
+    "frontend/src/pages/RealmInfinityDungeon.tsx",
+    "frontend/src/pages/RealmQuantumGalaxy.tsx",
+    "frontend/src/pages/WorldMapHub.tsx",
     "frontend/tailwind.config.js",
     "project_state.json"
   ]

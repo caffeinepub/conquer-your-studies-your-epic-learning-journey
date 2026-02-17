@@ -89,6 +89,14 @@ export class ExternalBlob {
         return this;
     }
 }
+export interface GamificationStateView {
+    xp: bigint;
+    completedChapters: Array<string>;
+    lastActivity: Time;
+    coins: bigint;
+    dailyStreak: bigint;
+}
+export type Time = bigint;
 export interface SyllabusItem {
     id: string;
     status: Status;
@@ -98,22 +106,56 @@ export interface SyllabusItem {
     description: string;
     chapter: string;
 }
+export interface UserProfile {
+    name: string;
+}
 export enum Status {
     tacticalDrills = "tacticalDrills",
     victoryZone = "victoryZone",
     missionCritical = "missionCritical",
     scouting = "scouting"
 }
-export interface backendInterface {
-    addTaskToSyllabusItem(id: string, task: string): Promise<void>;
-    createSyllabusItem(chapter: string, topic: string, description: string): Promise<string>;
-    getAllSyllabusItems(): Promise<Array<SyllabusItem>>;
-    getSyllabusItem(id: string): Promise<SyllabusItem>;
-    updateTaskStatus(id: string, taskIndex: bigint, newStatus: Status): Promise<void>;
+export enum UserRole {
+    admin = "admin",
+    user = "user",
+    guest = "guest"
 }
-import type { Status as _Status, SyllabusItem as _SyllabusItem } from "./declarations/backend.did.d.ts";
+export interface backendInterface {
+    _initializeAccessControlWithSecret(userSecret: string): Promise<void>;
+    addTaskToSyllabusItem(id: string, task: string): Promise<void>;
+    assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
+    completeBossFight(_earnedXp: bigint, chapter: string): Promise<void>;
+    createSyllabusItem(chapter: string, topic: string, description: string): Promise<string>;
+    getAllGamificationStates(): Promise<Array<[Principal, GamificationStateView]>>;
+    getAllSyllabusItems(): Promise<Array<SyllabusItem>>;
+    getCallerUserProfile(): Promise<UserProfile | null>;
+    getCallerUserRole(): Promise<UserRole>;
+    getGamificationState(user: Principal): Promise<GamificationStateView | null>;
+    getLeaderBoard(_limit: bigint): Promise<Array<[Principal, GamificationStateView]>>;
+    getSyllabusItem(id: string): Promise<SyllabusItem>;
+    getUserProfile(user: Principal): Promise<UserProfile | null>;
+    initializeChapterRewards(chapters: Array<string>): Promise<void>;
+    isCallerAdmin(): Promise<boolean>;
+    saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    updateTaskStatus(id: string, _taskIndex: bigint, newStatus: Status): Promise<void>;
+}
+import type { GamificationStateView as _GamificationStateView, Status as _Status, SyllabusItem as _SyllabusItem, UserProfile as _UserProfile, UserRole as _UserRole } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
+    async _initializeAccessControlWithSecret(arg0: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor._initializeAccessControlWithSecret(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor._initializeAccessControlWithSecret(arg0);
+            return result;
+        }
+    }
     async addTaskToSyllabusItem(arg0: string, arg1: string): Promise<void> {
         if (this.processError) {
             try {
@@ -125,6 +167,34 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.addTaskToSyllabusItem(arg0, arg1);
+            return result;
+        }
+    }
+    async assignCallerUserRole(arg0: Principal, arg1: UserRole): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.assignCallerUserRole(arg0, to_candid_UserRole_n1(this._uploadFile, this._downloadFile, arg1));
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.assignCallerUserRole(arg0, to_candid_UserRole_n1(this._uploadFile, this._downloadFile, arg1));
+            return result;
+        }
+    }
+    async completeBossFight(arg0: bigint, arg1: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.completeBossFight(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.completeBossFight(arg0, arg1);
             return result;
         }
     }
@@ -142,56 +212,191 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async getAllSyllabusItems(): Promise<Array<SyllabusItem>> {
+    async getAllGamificationStates(): Promise<Array<[Principal, GamificationStateView]>> {
         if (this.processError) {
             try {
-                const result = await this.actor.getAllSyllabusItems();
-                return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.getAllSyllabusItems();
-            return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
-        }
-    }
-    async getSyllabusItem(arg0: string): Promise<SyllabusItem> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.getSyllabusItem(arg0);
-                return from_candid_SyllabusItem_n2(this._uploadFile, this._downloadFile, result);
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.getSyllabusItem(arg0);
-            return from_candid_SyllabusItem_n2(this._uploadFile, this._downloadFile, result);
-        }
-    }
-    async updateTaskStatus(arg0: string, arg1: bigint, arg2: Status): Promise<void> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.updateTaskStatus(arg0, arg1, to_candid_Status_n6(this._uploadFile, this._downloadFile, arg2));
+                const result = await this.actor.getAllGamificationStates();
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.updateTaskStatus(arg0, arg1, to_candid_Status_n6(this._uploadFile, this._downloadFile, arg2));
+            const result = await this.actor.getAllGamificationStates();
+            return result;
+        }
+    }
+    async getAllSyllabusItems(): Promise<Array<SyllabusItem>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllSyllabusItems();
+                return from_candid_vec_n3(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllSyllabusItems();
+            return from_candid_vec_n3(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getCallerUserProfile(): Promise<UserProfile | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getCallerUserProfile();
+                return from_candid_opt_n8(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getCallerUserProfile();
+            return from_candid_opt_n8(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getCallerUserRole(): Promise<UserRole> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getCallerUserRole();
+                return from_candid_UserRole_n9(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getCallerUserRole();
+            return from_candid_UserRole_n9(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getGamificationState(arg0: Principal): Promise<GamificationStateView | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getGamificationState(arg0);
+                return from_candid_opt_n11(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getGamificationState(arg0);
+            return from_candid_opt_n11(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getLeaderBoard(arg0: bigint): Promise<Array<[Principal, GamificationStateView]>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getLeaderBoard(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getLeaderBoard(arg0);
+            return result;
+        }
+    }
+    async getSyllabusItem(arg0: string): Promise<SyllabusItem> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getSyllabusItem(arg0);
+                return from_candid_SyllabusItem_n4(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getSyllabusItem(arg0);
+            return from_candid_SyllabusItem_n4(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getUserProfile(arg0: Principal): Promise<UserProfile | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getUserProfile(arg0);
+                return from_candid_opt_n8(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getUserProfile(arg0);
+            return from_candid_opt_n8(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async initializeChapterRewards(arg0: Array<string>): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.initializeChapterRewards(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.initializeChapterRewards(arg0);
+            return result;
+        }
+    }
+    async isCallerAdmin(): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.isCallerAdmin();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.isCallerAdmin();
+            return result;
+        }
+    }
+    async saveCallerUserProfile(arg0: UserProfile): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.saveCallerUserProfile(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.saveCallerUserProfile(arg0);
+            return result;
+        }
+    }
+    async updateTaskStatus(arg0: string, arg1: bigint, arg2: Status): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.updateTaskStatus(arg0, arg1, to_candid_Status_n12(this._uploadFile, this._downloadFile, arg2));
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.updateTaskStatus(arg0, arg1, to_candid_Status_n12(this._uploadFile, this._downloadFile, arg2));
             return result;
         }
     }
 }
-function from_candid_Status_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Status): Status {
-    return from_candid_variant_n5(_uploadFile, _downloadFile, value);
+function from_candid_Status_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Status): Status {
+    return from_candid_variant_n7(_uploadFile, _downloadFile, value);
 }
-function from_candid_SyllabusItem_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _SyllabusItem): SyllabusItem {
-    return from_candid_record_n3(_uploadFile, _downloadFile, value);
+function from_candid_SyllabusItem_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _SyllabusItem): SyllabusItem {
+    return from_candid_record_n5(_uploadFile, _downloadFile, value);
 }
-function from_candid_record_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+function from_candid_UserRole_n9(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _UserRole): UserRole {
+    return from_candid_variant_n10(_uploadFile, _downloadFile, value);
+}
+function from_candid_opt_n11(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_GamificationStateView]): GamificationStateView | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_opt_n8(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_UserProfile]): UserProfile | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_record_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
     id: string;
     status: _Status;
     tasks: Array<string>;
@@ -210,7 +415,7 @@ function from_candid_record_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint
 } {
     return {
         id: value.id,
-        status: from_candid_Status_n4(_uploadFile, _downloadFile, value.status),
+        status: from_candid_Status_n6(_uploadFile, _downloadFile, value.status),
         tasks: value.tasks,
         topic: value.topic,
         isCompleted: value.isCompleted,
@@ -218,7 +423,16 @@ function from_candid_record_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint
         chapter: value.chapter
     };
 }
-function from_candid_variant_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+function from_candid_variant_n10(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    admin: null;
+} | {
+    user: null;
+} | {
+    guest: null;
+}): UserRole {
+    return "admin" in value ? UserRole.admin : "user" in value ? UserRole.user : "guest" in value ? UserRole.guest : value;
+}
+function from_candid_variant_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
     tacticalDrills: null;
 } | {
     victoryZone: null;
@@ -229,13 +443,16 @@ function from_candid_variant_n5(_uploadFile: (file: ExternalBlob) => Promise<Uin
 }): Status {
     return "tacticalDrills" in value ? Status.tacticalDrills : "victoryZone" in value ? Status.victoryZone : "missionCritical" in value ? Status.missionCritical : "scouting" in value ? Status.scouting : value;
 }
-function from_candid_vec_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_SyllabusItem>): Array<SyllabusItem> {
-    return value.map((x)=>from_candid_SyllabusItem_n2(_uploadFile, _downloadFile, x));
+function from_candid_vec_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_SyllabusItem>): Array<SyllabusItem> {
+    return value.map((x)=>from_candid_SyllabusItem_n4(_uploadFile, _downloadFile, x));
 }
-function to_candid_Status_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Status): _Status {
-    return to_candid_variant_n7(_uploadFile, _downloadFile, value);
+function to_candid_Status_n12(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Status): _Status {
+    return to_candid_variant_n13(_uploadFile, _downloadFile, value);
 }
-function to_candid_variant_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Status): {
+function to_candid_UserRole_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: UserRole): _UserRole {
+    return to_candid_variant_n2(_uploadFile, _downloadFile, value);
+}
+function to_candid_variant_n13(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Status): {
     tacticalDrills: null;
 } | {
     victoryZone: null;
@@ -252,6 +469,21 @@ function to_candid_variant_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8
         missionCritical: null
     } : value == Status.scouting ? {
         scouting: null
+    } : value;
+}
+function to_candid_variant_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: UserRole): {
+    admin: null;
+} | {
+    user: null;
+} | {
+    guest: null;
+} {
+    return value == UserRole.admin ? {
+        admin: null
+    } : value == UserRole.user ? {
+        user: null
+    } : value == UserRole.guest ? {
+        guest: null
     } : value;
 }
 export interface CreateActorOptions {

@@ -8,6 +8,19 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
+export const UserRole = IDL.Variant({
+  'admin' : IDL.Null,
+  'user' : IDL.Null,
+  'guest' : IDL.Null,
+});
+export const Time = IDL.Int;
+export const GamificationStateView = IDL.Record({
+  'xp' : IDL.Nat,
+  'completedChapters' : IDL.Vec(IDL.Text),
+  'lastActivity' : Time,
+  'coins' : IDL.Nat,
+  'dailyStreak' : IDL.Nat,
+});
 export const Status = IDL.Variant({
   'tacticalDrills' : IDL.Null,
   'victoryZone' : IDL.Null,
@@ -23,22 +36,64 @@ export const SyllabusItem = IDL.Record({
   'description' : IDL.Text,
   'chapter' : IDL.Text,
 });
+export const UserProfile = IDL.Record({ 'name' : IDL.Text });
 
 export const idlService = IDL.Service({
+  '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'addTaskToSyllabusItem' : IDL.Func([IDL.Text, IDL.Text], [], []),
+  'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'completeBossFight' : IDL.Func([IDL.Nat, IDL.Text], [], []),
   'createSyllabusItem' : IDL.Func(
       [IDL.Text, IDL.Text, IDL.Text],
       [IDL.Text],
       [],
     ),
+  'getAllGamificationStates' : IDL.Func(
+      [],
+      [IDL.Vec(IDL.Tuple(IDL.Principal, GamificationStateView))],
+      ['query'],
+    ),
   'getAllSyllabusItems' : IDL.Func([], [IDL.Vec(SyllabusItem)], ['query']),
+  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+  'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+  'getGamificationState' : IDL.Func(
+      [IDL.Principal],
+      [IDL.Opt(GamificationStateView)],
+      ['query'],
+    ),
+  'getLeaderBoard' : IDL.Func(
+      [IDL.Nat],
+      [IDL.Vec(IDL.Tuple(IDL.Principal, GamificationStateView))],
+      ['query'],
+    ),
   'getSyllabusItem' : IDL.Func([IDL.Text], [SyllabusItem], ['query']),
+  'getUserProfile' : IDL.Func(
+      [IDL.Principal],
+      [IDL.Opt(UserProfile)],
+      ['query'],
+    ),
+  'initializeChapterRewards' : IDL.Func([IDL.Vec(IDL.Text)], [], []),
+  'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
   'updateTaskStatus' : IDL.Func([IDL.Text, IDL.Nat, Status], [], []),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
+  const UserRole = IDL.Variant({
+    'admin' : IDL.Null,
+    'user' : IDL.Null,
+    'guest' : IDL.Null,
+  });
+  const Time = IDL.Int;
+  const GamificationStateView = IDL.Record({
+    'xp' : IDL.Nat,
+    'completedChapters' : IDL.Vec(IDL.Text),
+    'lastActivity' : Time,
+    'coins' : IDL.Nat,
+    'dailyStreak' : IDL.Nat,
+  });
   const Status = IDL.Variant({
     'tacticalDrills' : IDL.Null,
     'victoryZone' : IDL.Null,
@@ -54,16 +109,45 @@ export const idlFactory = ({ IDL }) => {
     'description' : IDL.Text,
     'chapter' : IDL.Text,
   });
+  const UserProfile = IDL.Record({ 'name' : IDL.Text });
   
   return IDL.Service({
+    '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'addTaskToSyllabusItem' : IDL.Func([IDL.Text, IDL.Text], [], []),
+    'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'completeBossFight' : IDL.Func([IDL.Nat, IDL.Text], [], []),
     'createSyllabusItem' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text],
         [IDL.Text],
         [],
       ),
+    'getAllGamificationStates' : IDL.Func(
+        [],
+        [IDL.Vec(IDL.Tuple(IDL.Principal, GamificationStateView))],
+        ['query'],
+      ),
     'getAllSyllabusItems' : IDL.Func([], [IDL.Vec(SyllabusItem)], ['query']),
+    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+    'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+    'getGamificationState' : IDL.Func(
+        [IDL.Principal],
+        [IDL.Opt(GamificationStateView)],
+        ['query'],
+      ),
+    'getLeaderBoard' : IDL.Func(
+        [IDL.Nat],
+        [IDL.Vec(IDL.Tuple(IDL.Principal, GamificationStateView))],
+        ['query'],
+      ),
     'getSyllabusItem' : IDL.Func([IDL.Text], [SyllabusItem], ['query']),
+    'getUserProfile' : IDL.Func(
+        [IDL.Principal],
+        [IDL.Opt(UserProfile)],
+        ['query'],
+      ),
+    'initializeChapterRewards' : IDL.Func([IDL.Vec(IDL.Text)], [], []),
+    'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
     'updateTaskStatus' : IDL.Func([IDL.Text, IDL.Nat, Status], [], []),
   });
 };

@@ -1,179 +1,350 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Conquer Your Studies: Strategic Battle Plan study dashboard",
+  "title": "Class 9 Epic Adventure — World Map Realms, Chapter Unlocks, Boss-Fight Rewards (Frontend)",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Create app shell and primary navigation with two main areas: War Map dashboard and Divide and Conquer tasks.",
-      "acceptanceCriteria": [
-        "App header displays the full app name exactly as provided.",
-        "There are two clearly accessible primary sections/pages: Dashboard (War Map) and Divide and Conquer.",
-        "All user-facing text is in English."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "create",
-          "description": "Create the root app shell layout with header (showing the exact app name), primary navigation links/tabs for the two sections, and a main content area that switches between the Dashboard (War Map) and Divide and Conquer views. Use shadcn-ui components (e.g., navigation, buttons, cards) to compose the shell UI; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/DashboardWarMap.tsx",
-          "operation": "create",
-          "description": "Create the Dashboard (War Map) page component and export it for use by the App shell. Use shadcn-ui layout primitives (e.g., Card) to keep styling consistent; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/DivideAndConquer.tsx",
-          "operation": "create",
-          "description": "Create the Divide and Conquer page component and export it for use by the App shell. Use shadcn-ui form/list primitives (e.g., Button, Input, Card) for consistent interaction UI; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/main.tsx",
-          "operation": "modify",
-          "description": "Ensure the root render remains wired to the App shell and React Query provider; verify App imports resolve to the created frontend/src/App.tsx and that navigation between the two primary sections is functional."
-        }
-      ]
-    },
-    {
       "id": "REQ-2",
-      "summary": "Apply a bold/adventurous Strategic Battle Plan theme and enforce the Red/Blue/Green/Yellow status color system with consistent labels.",
+      "summary": "Revamp landing screen to dark-mode neon voxel theme with a dominant pulsing CTA labeled exactly “START YOUR QUEST”.",
       "acceptanceCriteria": [
-        "Each of the four statuses is visually distinguishable and consistently mapped to the specified color and label (Mission Critical / Tactical Drills / Victory Zone / Scouting).",
-        "Theme is applied consistently across pages (buttons, cards, badges, headers) and reads as bold/adventurous (not minimal/neutral)."
+        "On the initial landing screen, the primary CTA text is exactly \"START YOUR QUEST\".",
+        "The CTA uses a clearly visible pulsing animation and is visually dominant on the page.",
+        "The overall landing visuals are consistent with a dark-mode neon, blocky/game-inspired style."
       ],
       "file_operations": [
+        {
+          "path": "frontend/src/pages/PortalHome.tsx",
+          "operation": "modify",
+          "description": "Convert the current portal-selection home into the required landing experience: apply dark neon voxel styling, replace the current CTA with a visually dominant giant button labeled exactly “START YOUR QUEST”, and add a clearly visible pulsing animation. Also update the CTA click handler to navigate into the new World Map hub flow (rather than scrolling to portals)."
+        },
         {
           "path": "frontend/src/index.css",
-          "operation": "create",
-          "description": "Create global styles and CSS variables to support a bold/adventurous Strategic Battle Plan theme (typography, spacing, background treatment) and define semantic tokens for the four strategic zones. Ensure global styling applies across all pages without editing immutable component files."
-        },
-        {
-          "path": "frontend/tailwind.config.js",
           "operation": "modify",
-          "description": "Extend Tailwind theme with named colors (and/or CSS variable mappings) for the four strategic zones and any additional theme tokens needed (e.g., banner/background overlays) to keep styling consistent across the app."
-        },
-        {
-          "path": "frontend/src/lib/statusTheme.ts",
-          "operation": "create",
-          "description": "Add a shared mapping utility that converts backend Status values into UI labels (Mission Critical / Tactical Drills / Victory Zone / Scouting) and corresponding Tailwind classnames/tokens so every page uses the same color+label logic."
-        },
-        {
-          "path": "frontend/src/components/StatusBadge.tsx",
-          "operation": "create",
-          "description": "Create a reusable StatusBadge component that renders the correct label and color styling using the shared status mapping. Compose shadcn-ui components (e.g., Badge) if available to keep consistent look-and-feel; verify the component's usage instructions before implementing."
+          "description": "Add/adjust global utility classes needed for a clearly visible pulsing CTA animation and blocky/neon landing accents, keeping styling consistent with the existing Tailwind + theme variable approach."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Build the War Map syllabus dashboard UI showing map-like nodes/territories with color-coded status labels.",
+      "summary": "Add a World Map hub screen with exactly three clickable Massive Realms as the primary navigation entry point.",
       "acceptanceCriteria": [
-        "Dashboard renders a collection of syllabus items in a map-like layout (nodes/tiles connected or arranged as territories).",
-        "Each syllabus item shows its title and current status label and color.",
-        "User can visually scan the map and identify which items are Scouting/Mission Critical/Tactical Drills/Victory Zone by color and label."
+        "A dedicated World Map view exists and is reachable from the landing CTA.",
+        "The World Map displays three distinct, labeled realms: THE QUANTUM GALAXY, THE INFINITY DUNGEON, THE CIVILIZATION QUEST.",
+        "Each realm is clickable/tappable and routes the user to that realm’s internal map (planet/path/kingdom view)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/DashboardWarMap.tsx",
+          "path": "frontend/src/pages/WorldMapHub.tsx",
+          "operation": "create",
+          "description": "Create the World Map hub screen that renders exactly three realm tiles/buttons labeled: THE QUANTUM GALAXY (Science), THE INFINITY DUNGEON (Mathematics), THE CIVILIZATION QUEST (SST). Use static generated assets for background and emblems (Verify the component's usage instructions before implementing): frontend/public/assets/generated/world-map-hub.dim_1920x1080.png and frontend/public/assets/generated/realm-emblems-set.dim_1024x1024.png."
+        },
+        {
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Implement the War Map layout: render syllabus items as map-like territory nodes/tiles (e.g., grid/flow layout with connecting lines/paths), show each item’s title/topic and StatusBadge, and apply Strategic Battle Plan styling. Use shadcn-ui components (e.g., Card) for nodes and consistent spacing; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/hooks/useSyllabusItems.ts",
-          "operation": "create",
-          "description": "Create React Query hooks to load syllabus items from the Internet Computer backend interface (getAllSyllabusItems) using the existing core-infrastructure backend connection patterns. Ensure hooks expose loading/error states and caching appropriate for the Dashboard UI."
-        },
-        {
-          "path": "frontend/src/components/WarMapNode.tsx",
-          "operation": "create",
-          "description": "Create a reusable node/territory component used by the dashboard to render a syllabus item with title, optional description, and StatusBadge, styled to look like a map territory. Compose shadcn-ui primitives (e.g., Card) where appropriate; verify the component's usage instructions before implementing."
+          "description": "Introduce World Map as the primary post-landing view and wire navigation: landing CTA → WorldMapHub → realm internal maps. Replace/retire the old portal navigation flow so the World Map becomes the central hub."
         }
       ]
     },
     {
       "id": "REQ-4",
-      "summary": "Implement Divide and Conquer UI for creating chapters/topics and tasks, updating task completion/status, and persisting changes via backend calls with React Query.",
+      "summary": "Implement THE QUANTUM GALAXY (Science) realm map with 3 planets and chapter mission nodes with 3D icons and lock states.",
       "acceptanceCriteria": [
-        "User can create a chapter/topic and add multiple smaller tasks under it.",
-        "User can mark tasks complete and see completion reflected in the UI (including Victory Zone color/label where applicable).",
-        "Edits (create/update/complete) persist after page refresh (not purely in-memory)."
+        "Science realm view shows exactly 3 planets: Chemistry, Physics, Biology.",
+        "Each listed Science chapter appears as its own Mission Level node under the correct planet.",
+        "Each Mission Level node shows a 3D-styled icon (rendered with Three.js/React Three Fiber or equivalent 3D presentation).",
+        "Locked vs unlocked levels are visually differentiated."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/DivideAndConquer.tsx",
+          "path": "frontend/src/pages/RealmQuantumGalaxy.tsx",
+          "operation": "create",
+          "description": "Create the Science realm internal map for THE QUANTUM GALAXY showing exactly 3 planets (Chemistry, Physics, Biology) and their chapter Mission Level nodes generated from the single source-of-truth content model. Display locked/unlocked states based on the caller’s completion list. Use planet icon set image for planet visuals (Verify the component's usage instructions before implementing): frontend/public/assets/generated/science-planets-icons.dim_1024x1024.png."
+        },
+        {
+          "path": "frontend/src/components/ThreeDLevelIcon.tsx",
+          "operation": "create",
+          "description": "Add a reusable 3D icon renderer for chapter nodes using React Three Fiber (or equivalent 3D presentation). Use it for Science mission nodes to satisfy the 3D icon requirement (Verify the component's usage instructions before implementing)."
+        },
+        {
+          "path": "frontend/package.json",
           "operation": "modify",
-          "description": "Implement Divide and Conquer flow: (1) create a syllabus item (chapter/topic/description), (2) select an existing syllabus item, (3) add multiple tasks to the selected item, (4) update task status (including Victory Zone for completed tasks). Render task lists with clear status labels/colors using StatusBadge/status mapping. Use shadcn-ui form and list components (e.g., Input, Button, Card) to compose the UI; verify the component's usage instructions before implementing."
+          "description": "Add/ensure required frontend dependencies for 3D icon rendering (e.g., React Three Fiber and any minimal helper utilities) so chapter node icons can render as 3D-styled visuals."
         },
         {
-          "path": "frontend/src/hooks/useSyllabusMutations.ts",
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Science realm route/view so the World Map’s THE QUANTUM GALAXY tile navigates to RealmQuantumGalaxy and chapter node selection navigates into the chapter-specific Boss Fight."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement THE INFINITY DUNGEON (Maths) realm as a linear boss-level path with locking/progression and chapter-specific Boss Fight navigation.",
+      "acceptanceCriteria": [
+        "Maths realm view displays a single linear sequence of Boss Level nodes for all listed chapters in the user-provided order.",
+        "Only the next available node is playable when prior nodes are incomplete; future nodes show as locked.",
+        "Selecting an unlocked node navigates to the corresponding Boss Fight quiz for that chapter."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/RealmInfinityDungeon.tsx",
           "operation": "create",
-          "description": "Create React Query mutations for createSyllabusItem, addTaskToSyllabusItem, and updateTaskStatus, including cache invalidation/refetch for the syllabus item lists/details so changes persist and are reflected after refresh."
+          "description": "Create the Maths realm internal map for THE INFINITY DUNGEON as a single linear path of Boss Level nodes, generated from the content model in the exact user-provided order. Compute locked/unlocked state from completed chapters so only the next node is playable. Use the shared 3D icon component for node icons (Verify the component's usage instructions before implementing)."
         },
         {
-          "path": "frontend/src/components/TaskList.tsx",
-          "operation": "create",
-          "description": "Create a task list component that displays tasks for the selected syllabus item, includes controls to mark a task completed (Victory Zone) or change status, and uses the shared status mapping for consistent labels/colors. Compose shadcn-ui primitives (e.g., Button, Dropdown/Menu if available) for interactions; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/SyllabusItemSelector.tsx",
-          "operation": "create",
-          "description": "Create a selector component to choose a syllabus chapter/topic from loaded items (and optionally filter/search). Compose shadcn-ui components (e.g., Select/Popover/Command if available) to provide an accessible selection UI; verify the component's usage instructions before implementing."
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the World Map’s THE INFINITY DUNGEON tile to RealmInfinityDungeon and wire node selection to the chapter-specific Boss Fight flow."
         }
       ]
     },
     {
       "id": "REQ-6",
-      "summary": "Display the provided motivational quote as a prominent closing section at the end of a primary page/flow.",
+      "summary": "Implement THE CIVILIZATION QUEST (SST) realm map with 4 kingdoms and chapter nodes with 3D icons and lock states.",
       "acceptanceCriteria": [
-        "The quote text appears exactly as provided (including punctuation and dash).",
-        "Quote is placed at the end of the interface/flow (visually bottom-most closing section on at least one main page)."
+        "SST realm view shows exactly 4 kingdoms with the specified names.",
+        "Each listed SST chapter appears as its own unlockable node in the correct kingdom.",
+        "Each chapter node displays a 3D-styled icon and a locked/unlocked state."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/MotivationalQuote.tsx",
+          "path": "frontend/src/pages/RealmCivilizationQuest.tsx",
           "operation": "create",
-          "description": "Create a prominent closing-section component that renders the quote text exactly as provided and styles it consistently with the bold/adventurous theme (e.g., banner/card treatment). Compose shadcn-ui components (e.g., Card) where useful; verify the component's usage instructions before implementing."
+          "description": "Create the SST realm internal map for THE CIVILIZATION QUEST showing exactly four kingdoms: History Portal, Geography Portal, Civics/Pol Science Fortress, Economics Valley. Generate chapter nodes from the content model, show locked/unlocked, and render a 3D-styled icon per node using the shared 3D icon component. Use the SST kingdom icon set for kingdom visuals (Verify the component's usage instructions before implementing): frontend/public/assets/generated/sst-kingdom-icons.dim_1024x1024.png."
         },
         {
-          "path": "frontend/src/pages/DashboardWarMap.tsx",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Place the MotivationalQuote component at the bottom of the Dashboard page content so it is the closing section of the primary flow and visually bottom-most."
+          "description": "Wire the World Map’s THE CIVILIZATION QUEST tile to RealmCivilizationQuest and wire chapter node selection to the chapter-specific Boss Fight flow."
         }
       ]
     },
     {
       "id": "REQ-7",
-      "summary": "Add required generated static art assets under frontend/public/assets/generated and visibly use at least one in the app shell or dashboard.",
+      "summary": "Make Boss Fights chapter-specific (not subject-wide) with minimal text and icon-forward Power Card presentation, returning to the realm map on completion.",
       "acceptanceCriteria": [
-        "Generated images are stored under frontend/public/assets/generated and referenced directly by the frontend.",
-        "At least one generated background/hero image is visibly used in the app shell or dashboard without breaking readability.",
-        "No backend endpoints are used to fetch these static images."
+        "Starting a Boss Fight always includes the chapter identity (e.g., Maths → Circles) and displays it in the UI.",
+        "Boss Fight screens avoid long paragraphs; questions and options are presented in concise, card-based UI with icons/animations.",
+        "Completing a chapter Boss Fight returns the user to the realm map with that chapter marked completed/unlocked progression updated."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/war-map-bg.dim_1920x1080.png",
-          "operation": "create",
-          "description": "Add the generated static background image asset at the required path for direct frontend use (no backend fetching)."
+          "path": "frontend/src/pages/BossFight.tsx",
+          "operation": "modify",
+          "description": "Refactor BossFight to accept and display explicit chapter identity (subject + chapter), drive question selection by chapter id, present questions/options as concise icon-forward cards (reusing/aligning with the existing PowerCard visual language), and call completion using the selected chapter. After victory, navigate back to the correct realm map and rely on refreshed gamification state to show completion/unlocks."
         },
         {
-          "path": "frontend/public/assets/generated/battle-icons.dim_512x512.png",
-          "operation": "create",
-          "description": "Add the generated static icon set image asset at the required path for direct frontend use (no backend fetching)."
+          "path": "frontend/src/lib/bossFights.ts",
+          "operation": "modify",
+          "description": "Restructure boss fight question data to be keyed by chapter id (not only by portal/subject) so each chapter node launches its own Boss Fight. Keep copy concise to avoid long paragraphs while still supporting gameplay clarity."
         },
         {
-          "path": "frontend/public/assets/generated/battle-banner.dim_1600x400.png",
-          "operation": "create",
-          "description": "Add the generated static header banner image asset at the required path for direct frontend use (no backend fetching)."
+          "path": "frontend/src/components/PowerCard.tsx",
+          "operation": "modify",
+          "description": "Extend/adjust the PowerCard component (without touching any immutable ui component paths) to better support Boss Fight option presentation (e.g., optional compact mode / selection visuals / icon-first layout) while keeping text minimal. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement frontend completion flow that triggers fixed rewards, shows victory summary (XP/coins/medal), and unlocks subsequent nodes based on completion state.",
+      "acceptanceCriteria": [
+        "On a successful Boss Fight completion, backend state reflects +500 XP and +50 coins for the caller.",
+        "A per-chapter mastery/medal record is persisted for the caller and chapter.",
+        "Frontend shows a clear victory summary including XP, coins, and a medal earned.",
+        "Chapter completion unlocks the next appropriate node (linear for Maths; next/available nodes for Science/SST)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useGamificationQueries.ts",
+          "operation": "modify",
+          "description": "Update the complete-boss-fight mutation to pass the selected chapter identifier and fixed earned XP value (500) to the backend function signature shown in backend.d.ts, and ensure relevant queries are invalidated so maps/HUD reflect updated coins/xp/completions."
+        },
+        {
+          "path": "frontend/src/pages/BossFight.tsx",
+          "operation": "modify",
+          "description": "Update victory handling to show a reward summary that includes exactly +500 XP, +50 Coins, and a Chapter Mastery Medal visual using the static generated icons (Verify the component's usage instructions before implementing): frontend/public/assets/generated/chapter-mastery-medal.dim_512x512.png and frontend/public/assets/generated/coins-icon.dim_512x512.png."
+        },
+        {
+          "path": "frontend/src/pages/RealmInfinityDungeon.tsx",
+          "operation": "modify",
+          "description": "Ensure map progression logic uses completed chapter ids to unlock only the next Maths node and to visually differentiate completed vs locked vs next-playable."
+        },
+        {
+          "path": "frontend/src/pages/RealmQuantumGalaxy.tsx",
+          "operation": "modify",
+          "description": "Ensure Science mission nodes visually differentiate locked vs unlocked vs completed, and unlocking behavior reflects completion state updates after a Boss Fight."
+        },
+        {
+          "path": "frontend/src/pages/RealmCivilizationQuest.tsx",
+          "operation": "modify",
+          "description": "Ensure SST chapter nodes visually differentiate locked vs unlocked vs completed, and unlocking behavior reflects completion state updates after a Boss Fight."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Update the top HUD to show a glowing level progress bar, daily streak fire icon, and a coins counter consistent across realm maps and boss fights.",
+      "acceptanceCriteria": [
+        "Header shows level progress with a clearly glowing progress bar.",
+        "Header shows daily streak with a fire icon.",
+        "Header shows a coins counter sourced from backend state.",
+        "Header appears on all non-landing screens and updates after boss fight completion."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/GamificationHeader.tsx",
+          "operation": "modify",
+          "description": "Add a visible coins counter sourced from gamification state (coins) and render with a neon coin icon (Verify the component's usage instructions before implementing): frontend/public/assets/generated/coins-icon.dim_512x512.png. Enhance the progress bar styling to be clearly glowing while keeping the existing daily streak fire icon. Ensure layout remains consistent across realm maps and Boss Fight screens."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Wire generated art assets into the app shell (e.g., render the wide header banner and/or emblem area) and ensure readability with appropriate overlay/contrast from the theme. Reference images directly from frontend/public/assets/generated (no backend fetching). Use shadcn-ui layout primitives as needed; verify the component's usage instructions before implementing."
+          "description": "Ensure GamificationHeader is shown on all non-landing screens (World Map, all realms, and Boss Fight) and hidden on the landing screen only."
         },
         {
-          "path": "frontend/src/pages/DashboardWarMap.tsx",
+          "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Apply the parchment-style war map background texture on the Dashboard (or its container) and optionally use the icon set for legend/status indicators, ensuring map readability. Reference images directly from frontend/public/assets/generated (no backend fetching). Use shadcn-ui components where helpful; verify the component's usage instructions before implementing."
+          "description": "Add/adjust glow utilities to ensure the level progress bar has a clearly glowing effect consistent with the neon theme."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Apply consistent subject accent colors across World Map, realms, nodes, and Boss Fight screens (Science neon green, Maths neon gold, SST neon red).",
+      "acceptanceCriteria": [
+        "Science UI elements (realm title, nodes, accents) use a neon green theme.",
+        "Maths UI elements use a neon gold theme.",
+        "SST UI elements use a neon red theme.",
+        "No subject uses mismatched primary accent colors in the realm/map and boss-fight flows."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define subject accent CSS variables/utilities for neon green (Science), neon gold (Maths), and neon red (SST), and align existing portal theme tokens to these required subject colors."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Expose the subject accent colors as Tailwind color tokens/classes so World Map, realm maps, nodes, and Boss Fight UI can consistently apply Science/Maths/SST neon accents."
+        },
+        {
+          "path": "frontend/src/pages/WorldMapHub.tsx",
+          "operation": "modify",
+          "description": "Apply the subject color system to each realm tile (Science neon green, Maths neon gold, SST neon red) consistently in labels, borders, and hover/active accents."
+        },
+        {
+          "path": "frontend/src/pages/BossFight.tsx",
+          "operation": "modify",
+          "description": "Apply the subject color system to Boss Fight visuals (header accents, progress, option highlights) based on the active chapter’s subject so the boss fight matches the realm/map theming."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Create a single source-of-truth frontend content model enumerating all chapters exactly as specified and drive maps and Boss Fight routing from it.",
+      "acceptanceCriteria": [
+        "All user-listed chapters appear in the UI (no missing chapters, no extras).",
+        "Selecting any chapter node launches the correct Boss Fight flow for that chapter.",
+        "The UI structure (planets/path/kingdoms) is generated from a single source-of-truth content model to avoid inconsistencies."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/lib/contentModel.ts",
+          "operation": "create",
+          "description": "Add a typed content model that enumerates all chapters exactly as specified: Science planets (Chemistry: Matter, Atoms, Molecules; Physics: Motion, Force, Gravitation, Work, Energy, Sound; Biology: Cell, Tissues, Diversity, Improvement in Food Resources), Maths linear chapters in the exact provided order, and SST kingdoms with chapters exactly as listed. Include stable chapter ids used for completion tracking and Boss Fight lookup."
+        },
+        {
+          "path": "frontend/src/pages/RealmQuantumGalaxy.tsx",
+          "operation": "modify",
+          "description": "Drive planet/chapter rendering from the content model and use the model’s chapter ids to determine completed/locked/unlocked states and to launch the chapter-specific Boss Fight."
+        },
+        {
+          "path": "frontend/src/pages/RealmInfinityDungeon.tsx",
+          "operation": "modify",
+          "description": "Drive the linear node sequence from the content model (exact order) and use the model’s chapter ids for locking rules and Boss Fight navigation."
+        },
+        {
+          "path": "frontend/src/pages/RealmCivilizationQuest.tsx",
+          "operation": "modify",
+          "description": "Drive kingdom/chapter rendering from the content model and use the model’s chapter ids to determine completed/locked/unlocked states and to launch the chapter-specific Boss Fight."
+        },
+        {
+          "path": "frontend/src/pages/BossFight.tsx",
+          "operation": "modify",
+          "description": "Use the content model to resolve and display the chapter identity (subject + chapter title) and to route the completion return path back to the correct realm map."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Update app navigation state to carry selected realm + selected chapter id (from the content model) into Boss Fight, ensuring every chapter node launches its matching Boss Fight."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Use generated static image assets from frontend/public/assets/generated for World Map and realm visuals without routing through backend.",
+      "acceptanceCriteria": [
+        "All new generated images are stored and referenced as static files under frontend/public/assets/generated.",
+        "No backend endpoints are used for serving images.",
+        "World Map and realm screens visibly use the new generated assets."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/world-map-hub.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated World Map hub background as a static asset at this exact path so it can be referenced directly by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/realm-emblems-set.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated realm emblems image as a static asset at this exact path for use on the World Map hub."
+        },
+        {
+          "path": "frontend/public/assets/generated/science-planets-icons.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated Science planet icons as a static asset at this exact path for use in THE QUANTUM GALAXY realm UI."
+        },
+        {
+          "path": "frontend/public/assets/generated/sst-kingdom-icons.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated SST kingdom icons as a static asset at this exact path for use in THE CIVILIZATION QUEST realm UI."
+        },
+        {
+          "path": "frontend/public/assets/generated/chapter-level-icons-pack.dim_2048x2048.png",
+          "operation": "create",
+          "description": "Add the generated chapter level icon pack as a static asset at this exact path for use across chapter nodes and Boss Fight visuals."
+        },
+        {
+          "path": "frontend/public/assets/generated/chapter-mastery-medal.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated Chapter Mastery Medal icon as a static asset at this exact path for victory/reward UI."
+        },
+        {
+          "path": "frontend/public/assets/generated/coins-icon.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated Coins icon as a static asset at this exact path for the HUD coins counter and reward UI."
+        },
+        {
+          "path": "frontend/src/pages/WorldMapHub.tsx",
+          "operation": "modify",
+          "description": "Reference and render the new static World Map background and realm emblems from frontend/public/assets/generated (Verify the component's usage instructions before implementing)."
+        },
+        {
+          "path": "frontend/src/pages/RealmQuantumGalaxy.tsx",
+          "operation": "modify",
+          "description": "Reference and render the new Science planet icons and chapter icon pack from frontend/public/assets/generated (Verify the component's usage instructions before implementing)."
+        },
+        {
+          "path": "frontend/src/pages/RealmCivilizationQuest.tsx",
+          "operation": "modify",
+          "description": "Reference and render the new SST kingdom icons and chapter icon pack from frontend/public/assets/generated (Verify the component's usage instructions before implementing)."
+        },
+        {
+          "path": "frontend/src/pages/BossFight.tsx",
+          "operation": "modify",
+          "description": "Reference and render the medal + coins static assets in the victory summary from frontend/public/assets/generated (Verify the component's usage instructions before implementing)."
         }
       ]
     }

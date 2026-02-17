@@ -2,41 +2,19 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-create-the-app-shell-and-primary-navigation-for-conquer-your-studies-your-epic-learning-journey-with-two-main-areas-1-a-war-map-style-syllabus-dashboard-and-2-a-divide-and-conquer-task-breakdown-section",
-      "featureTitle": "Create the app shell and primary navigation for \"Conquer Your Studies: Your Epic Learning Journey\" with two main areas: (1) a War Map-style syllabus dashboard and (2) a \"Divide and Conquer\" task breakdown section.",
+      "featureId": "feature-update-the-landing-experience-to-match-the-requested-theme-and-cta-dark-mode-neon-roblox-x-minecraft-inspired-aesthetic-and-a-giant-pulsing-main-button-labeled-exactly-start-your-quest",
+      "featureTitle": "Update the landing experience to match the requested theme and CTA: dark-mode neon (Roblox x Minecraft-inspired) aesthetic and a giant pulsing main button labeled exactly \"START YOUR QUEST\".",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/main.tsx",
-        "frontend/src/pages/DashboardWarMap.tsx",
-        "frontend/src/pages/DivideAndConquer.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-a-consistent-strategic-battle-plan-visual-theme-that-is-bold-and-adventurous-including-typography-spacing-and-ui-styling-and-enforce-the-provided-section-color-system-across-the-interface-red-mission-critical-difficult-high-priority-blue-tactical-drills-revision-practice-tests-green-victory-zone-completed-yellow-scouting-new-topics",
-      "featureTitle": "Implement a consistent \"Strategic Battle Plan\" visual theme that is bold and adventurous, including typography, spacing, and UI styling, and enforce the provided section color system across the interface: Red=Mission Critical (difficult/high-priority), Blue=Tactical Drills (revision/practice tests), Green=Victory Zone (completed), Yellow=Scouting (new topics).",
-      "files": [
-        "frontend/src/components/StatusBadge.tsx",
         "frontend/src/index.css",
-        "frontend/src/lib/statusTheme.ts",
-        "frontend/tailwind.config.js"
+        "frontend/src/pages/PortalHome.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
         "REQ-2"
@@ -44,18 +22,19 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-build-the-war-map-of-the-syllabus-dashboard-ui-that-presents-syllabus-items-as-map-like-nodes-territories-showing-each-item-s-current-status-scouting-mission-critical-tactical-drills-victory-zone-using-the-defined-color-coded-styling-and-labels",
-      "featureTitle": "Build the \"War Map of the syllabus\" dashboard UI that presents syllabus items as map-like nodes/territories, showing each item’s current status (Scouting, Mission Critical, Tactical Drills, Victory Zone) using the defined color-coded styling and labels.",
+      "featureId": "feature-add-a-central-world-map-navigation-hub-screen-that-presents-exactly-three-massive-realms-and-becomes-the-primary-navigation-entry-point-1-the-quantum-galaxy-science-2-the-infinity-dungeon-mathematics-3-the-civilization-quest-sst",
+      "featureTitle": "Add a central \"World Map\" navigation hub screen that presents exactly three Massive Realms and becomes the primary navigation entry point: (1) THE QUANTUM GALAXY (Science), (2) THE INFINITY DUNGEON (Mathematics), (3) THE CIVILIZATION QUEST (SST).",
       "files": [
-        "frontend/src/components/WarMapNode.tsx",
-        "frontend/src/pages/DashboardWarMap.tsx"
+        "frontend/src/App.tsx",
+        "frontend/src/pages/WorldMapHub.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
         "REQ-3"
@@ -63,19 +42,20 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-implement-the-divide-and-conquer-section-ui-to-select-a-syllabus-chapter-topic-and-break-it-into-smaller-tasks-with-the-ability-to-create-view-update-and-mark-tasks-as-completed-moving-them-into-the-victory-zone-status",
-      "featureTitle": "Implement the \"Divide and Conquer\" section UI to select a syllabus chapter/topic and break it into smaller tasks, with the ability to create, view, update, and mark tasks as completed (moving them into the Victory Zone status).",
+      "featureId": "feature-implement-the-quantum-galaxy-science-realm-structure-on-the-frontend-with-3-planets-chemistry-physics-biology-and-represent-each-requested-chapter-as-an-unlockable-mission-level-with-a-distinct-3d-icon",
+      "featureTitle": "Implement THE QUANTUM GALAXY (Science realm) structure on the frontend with 3 planets—Chemistry, Physics, Biology—and represent each requested chapter as an unlockable Mission Level with a distinct 3D icon.",
       "files": [
-        "frontend/src/components/SyllabusItemSelector.tsx",
-        "frontend/src/components/TaskList.tsx",
-        "frontend/src/pages/DivideAndConquer.tsx"
+        "frontend/src/App.tsx",
+        "frontend/src/components/ThreeDLevelIcon.tsx",
+        "frontend/src/pages/RealmQuantumGalaxy.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
         "REQ-4"
@@ -83,18 +63,39 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-display-the-provided-motivational-quote-at-the-end-of-the-primary-user-flow-interface-e-g-at-the-bottom-of-the-dashboard-and-or-as-a-dedicated-closing-section-using-prominent-styling-consistent-with-the-bold-adventurous-theme",
-      "featureTitle": "Display the provided motivational quote at the end of the primary user flow/interface (e.g., at the bottom of the Dashboard and/or as a dedicated closing section), using prominent styling consistent with the bold/adventurous theme.",
+      "featureId": "feature-implement-the-infinity-dungeon-mathematics-realm-as-a-linear-path-of-boss-levels-covering-every-listed-chapter-with-clear-progression-and-locking-until-prior-levels-are-completed",
+      "featureTitle": "Implement THE INFINITY DUNGEON (Mathematics realm) as a linear path of Boss Levels covering every listed chapter, with clear progression and locking until prior levels are completed.",
       "files": [
-        "frontend/src/components/MotivationalQuote.tsx",
-        "frontend/src/pages/DashboardWarMap.tsx"
+        "frontend/src/App.tsx",
+        "frontend/src/pages/RealmInfinityDungeon.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-civilization-quest-sst-realm-with-4-distinct-kingdoms-history-portal-geography-portal-civics-pol-science-fortress-economics-valley-and-represent-each-listed-chapter-within-its-kingdom-as-an-unlockable-level-node-with-a-3d-icon",
+      "featureTitle": "Implement THE CIVILIZATION QUEST (SST realm) with 4 distinct Kingdoms—History Portal, Geography Portal, Civics/Pol Science Fortress, Economics Valley—and represent each listed chapter within its kingdom as an unlockable level node with a 3D icon.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/RealmCivilizationQuest.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
         "REQ-6"
@@ -102,21 +103,134 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-required-generated-static-art-assets-to-support-the-war-map-battle-plan-look-and-render-them-in-the-ui-from-frontend-public-assets-generated-do-not-serve-images-from-the-backend",
-      "featureTitle": "Add required generated static art assets to support the War Map/Battle Plan look, and render them in the UI from frontend/public/assets/generated (do not serve images from the backend).",
+      "featureId": "feature-update-the-boss-fight-experience-so-every-chapter-quiz-is-a-boss-fight-tied-to-a-specific-chapter-node-not-just-a-subject-wide-quiz-list-with-minimal-text-and-an-icon-forward-power-card-presentation",
+      "featureTitle": "Update the Boss Fight experience so every chapter quiz is a \"Boss Fight\" tied to a specific chapter node (not just a subject-wide quiz list), with minimal text and an icon-forward \"Power Card\" presentation.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/pages/DashboardWarMap.tsx"
+        "frontend/src/lib/bossFights.ts",
+        "frontend/src/pages/BossFight.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
         "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-requested-reward-rules-end-to-end-winning-a-chapter-boss-fight-awards-exactly-500-xp-50-coins-and-a-chapter-mastery-medal-recorded-for-that-specific-chapter-and-used-to-unlock-subsequent-levels",
+      "featureTitle": "Implement the requested reward rules end-to-end: winning a chapter Boss Fight awards exactly 500 XP, 50 Coins, and a \"Chapter Mastery Medal\" recorded for that specific chapter (and used to unlock subsequent levels).",
+      "files": [
+        "frontend/src/hooks/useGamificationQueries.ts",
+        "frontend/src/pages/BossFight.tsx",
+        "frontend/src/pages/RealmCivilizationQuest.tsx",
+        "frontend/src/pages/RealmInfinityDungeon.tsx",
+        "frontend/src/pages/RealmQuantumGalaxy.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-top-hud-to-include-a-glowing-level-up-progress-bar-a-daily-streak-fire-icon-and-a-visible-coins-counter-and-ensure-it-stays-consistent-across-realm-maps-and-boss-fights",
+      "featureTitle": "Update the top HUD to include: a glowing level-up progress bar, a Daily Streak fire icon, and a visible Coins counter, and ensure it stays consistent across realm maps and boss fights.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/GamificationHeader.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-the-requested-subject-color-system-consistently-across-the-world-map-realm-uis-nodes-and-boss-fight-screens-science-neon-green-maths-neon-gold-sst-neon-red",
+      "featureTitle": "Apply the requested subject color system consistently across the World Map, realm UIs, nodes, and Boss Fight screens: Science = neon green, Maths = neon gold, SST = neon red.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/src/pages/BossFight.tsx",
+        "frontend/src/pages/WorldMapHub.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-chapter-realm-content-model-on-the-frontend-that-enumerates-all-chapters-exactly-as-specified-science-planets-chapters-maths-linear-chapters-sst-kingdoms-chapters-and-use-it-to-drive-the-world-map-and-boss-fight-routing",
+      "featureTitle": "Add a chapter/realm content model on the frontend that enumerates all chapters exactly as specified (Science planets/chapters, Maths linear chapters, SST kingdoms/chapters) and use it to drive the World Map and Boss Fight routing.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/lib/contentModel.ts",
+        "frontend/src/pages/BossFight.tsx",
+        "frontend/src/pages/RealmCivilizationQuest.tsx",
+        "frontend/src/pages/RealmInfinityDungeon.tsx",
+        "frontend/src/pages/RealmQuantumGalaxy.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-render-generated-image-assets-from-the-static-public-assets-directory-frontend-public-assets-generated-for-the-world-map-and-key-realm-visuals-without-routing-images-through-the-backend",
+      "featureTitle": "Render generated image assets from the static public assets directory (frontend/public/assets/generated) for the World Map and key realm visuals, without routing images through the backend.",
+      "files": [
+        "frontend/src/pages/BossFight.tsx",
+        "frontend/src/pages/RealmCivilizationQuest.tsx",
+        "frontend/src/pages/RealmQuantumGalaxy.tsx",
+        "frontend/src/pages/WorldMapHub.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
       ],
       "confidence": "high"
     }

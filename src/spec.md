@@ -1,15 +1,20 @@
 # Specification
 
 ## Summary
-**Goal:** Build “Conquer Your Studies: Your Epic Learning Journey” with a War Map-style syllabus dashboard and a Divide & Conquer task breakdown area, using a bold “Strategic Battle Plan” theme and persistent data.
+**Goal:** Refresh the Class 9 Epic Adventure experience with a dark-mode neon, game-inspired landing flow leading into a World Map hub, subject realm maps, chapter-based Boss Fights, and fixed chapter rewards with coins/mastery tracking.
 
 **Planned changes:**
-- Create the app shell with header showing the full app name and primary navigation to two pages: Dashboard (War Map) and Divide and Conquer.
-- Apply a consistent bold/adventurous “Strategic Battle Plan” theme across UI, enforcing status colors and labels: Red=Mission Critical, Blue=Tactical Drills, Green=Victory Zone, Yellow=Scouting.
-- Implement the War Map syllabus dashboard UI with map-like nodes/territories, each showing title plus status label and color.
-- Implement the Divide and Conquer UI to create chapters/topics, add/update tasks, and mark tasks complete (moving to Victory Zone).
-- Add backend persistence (Motoko, single-actor) for syllabus items and tasks, with statuses restricted to the four supported values; connect frontend via React Query for querying/updating with cache invalidation.
-- Display the motivational quote exactly as provided as a bottom-most closing section on at least one main page.
-- Add generated static art assets under `frontend/public/assets/generated` and render at least one visibly (e.g., background/hero) without harming readability.
+- Update landing page visuals to a dark-mode neon (Roblox x Minecraft-inspired) aesthetic with a visually dominant pulsing CTA labeled exactly “START YOUR QUEST”.
+- Add a central World Map hub screen with exactly three clickable realms: THE QUANTUM GALAXY (Science), THE INFINITY DUNGEON (Mathematics), THE CIVILIZATION QUEST (SST).
+- Implement Science realm map with 3 planets (Chemistry, Physics, Biology) and chapter Mission Level nodes with 3D-styled icons and locked/unlocked states.
+- Implement Maths realm map as a single linear sequence of chapter Boss Level nodes in the specified order, with progression locking.
+- Implement SST realm map with 4 kingdoms (History Portal, Geography Portal, Civics/Pol Science Fortress, Economics Valley) and chapter nodes with 3D-styled icons and locked/unlocked states.
+- Update Boss Fight flow so each chapter launches its own “Boss Fight” quiz with minimal text and icon-forward “Power Card” presentation, and returns to the map with completion reflected.
+- Implement rewards end-to-end: completing a chapter Boss Fight grants exactly 500 XP, 50 Coins, and a per-chapter “Chapter Mastery Medal” used for unlock progression.
+- Extend backend to store coins and per-user, per-chapter mastery/completion; add methods to fetch coins + mastery/unlock state and to complete a chapter Boss Fight with idempotent reward behavior.
+- Update the top HUD (non-landing screens) to include a glowing level progress bar, a daily streak fire icon, and a coins counter sourced from backend state.
+- Apply subject color themes consistently: Science = neon green, Maths = neon gold, SST = neon red.
+- Add a frontend content model enumerating all chapters exactly as specified and use it to drive map rendering and Boss Fight routing.
+- Serve realm/map visuals from static generated assets under frontend/public/assets/generated (no backend image routing).
 
-**User-visible outcome:** Users can navigate between a War Map syllabus dashboard and a Divide & Conquer task planner, see clear color-coded learning statuses, create and complete tasks with progress saved after refresh, and view a prominent closing motivational quote within a battle-plan themed interface.
+**User-visible outcome:** Users land on a neon dark-mode start screen, enter a World Map with three realms, navigate subject-specific maps to chapter nodes, play chapter-specific Boss Fights using Power Cards, earn fixed XP/coins/medals, and see progression/coins reflected across the HUD and maps.

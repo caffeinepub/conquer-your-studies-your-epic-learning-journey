@@ -1,60 +1,103 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Build a bold, adventurous web app study planner called \"Conquer Your Studies: Your Epic Learning Journey\" with a Strategic Battle Plan (war-map) UI, color-coded study zones, a Divide and Conquer task breakdown section, and a closing motivational quote.",
+  "summary": "Build 'Class 9 Epic Adventure' interactive web app with a dark-mode neon (Roblox x Minecraft-inspired) aesthetic featuring a central World Map with 3 realms (Science, Maths, SST), chapter-based unlockable levels, boss-fight quizzes, and XP/coins/streak gamification UI.",
   "architectural_notes": [
-    "UI theme: \"Strategic Battle Plan\" / war-map aesthetic with bold, adventurous styling.",
-    "Use defined color mapping for subject/topic status and sections: Red=Mission Critical, Blue=Tactical Drills, Green=Victory Zone, Yellow=Scouting."
+    "Dark-mode neon UI; Roblox x Minecraft-inspired visual style.",
+    "Central World Map as primary information architecture with 3 realms and sub-areas.",
+    "Chapter content represented as unlockable levels with 3D-styled icons.",
+    "Use compact, icon-forward 'Power Cards' instead of long text; emphasize animations.",
+    "Gamification loop includes XP/Coins/Medals plus visible level progress and daily streak."
   ],
   "known_issues": [],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Parchment-style war map background texture with subtle grid and compass rose (war-map-bg.dim_1920x1080.png)\n- Bold adventurous emblem/badge icon set: sword, shield, flag, compass (battle-icons.dim_512x512.png)\n- Wide header banner with \"Strategic Battle Plan\" aesthetic (battle-banner.dim_1600x400.png)",
+  "imageRequirements": "## Required Images\n- Central world map background in a dark neon voxel style with three distinct realm landmarks (world-map-hub.dim_1920x1080.png)\n- Three realm emblem icons in a consistent 3D neon voxel style: Quantum Galaxy, Infinity Dungeon, Civilization Quest (realm-emblems-set.dim_1024x1024.png)\n- Science planet icon set (Chemistry, Physics, Biology) in 3D neon voxel style (science-planets-icons.dim_1024x1024.png)\n- SST kingdom icon set (History, Geography, Civics/Pol Science, Economics) in 3D neon voxel style (sst-kingdom-icons.dim_1024x1024.png)\n- Pack of chapter level 3D icons (generic but varied) in neon voxel style (chapter-level-icons-pack.dim_2048x2048.png)\n- Chapter Mastery Medal icon in neon voxel style (chapter-mastery-medal.dim_512x512.png)\n- Coins icon in neon voxel style (coins-icon.dim_512x512.png)",
   "existing_features": [
     {
-      "id": "feature-create-the-app-shell-and-primary-navigation-for-conquer-your-studies-your-epic-learning-journey-with-two-main-areas-1-a-war-map-style-syllabus-dashboard-and-2-a-divide-and-conquer-task-breakdown-section",
-      "title": "Create the app shell and primary navigation for \"Conquer Your Studies: Your Epic Learning Journey\" with two main areas: (1) a War Map-style syllabus dashboard and (2) a \"Divide and Conquer\" task breakdown section.",
-      "reqIds": [
-        "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-a-consistent-strategic-battle-plan-visual-theme-that-is-bold-and-adventurous-including-typography-spacing-and-ui-styling-and-enforce-the-provided-section-color-system-across-the-interface-red-mission-critical-difficult-high-priority-blue-tactical-drills-revision-practice-tests-green-victory-zone-completed-yellow-scouting-new-topics",
-      "title": "Implement a consistent \"Strategic Battle Plan\" visual theme that is bold and adventurous, including typography, spacing, and UI styling, and enforce the provided section color system across the interface: Red=Mission Critical (difficult/high-priority), Blue=Tactical Drills (revision/practice tests), Green=Victory Zone (completed), Yellow=Scouting (new topics).",
+      "id": "feature-update-the-landing-experience-to-match-the-requested-theme-and-cta-dark-mode-neon-roblox-x-minecraft-inspired-aesthetic-and-a-giant-pulsing-main-button-labeled-exactly-start-your-quest",
+      "title": "Update the landing experience to match the requested theme and CTA: dark-mode neon (Roblox x Minecraft-inspired) aesthetic and a giant pulsing main button labeled exactly \"START YOUR QUEST\".",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-build-the-war-map-of-the-syllabus-dashboard-ui-that-presents-syllabus-items-as-map-like-nodes-territories-showing-each-item-s-current-status-scouting-mission-critical-tactical-drills-victory-zone-using-the-defined-color-coded-styling-and-labels",
-      "title": "Build the \"War Map of the syllabus\" dashboard UI that presents syllabus items as map-like nodes/territories, showing each item’s current status (Scouting, Mission Critical, Tactical Drills, Victory Zone) using the defined color-coded styling and labels.",
+      "id": "feature-add-a-central-world-map-navigation-hub-screen-that-presents-exactly-three-massive-realms-and-becomes-the-primary-navigation-entry-point-1-the-quantum-galaxy-science-2-the-infinity-dungeon-mathematics-3-the-civilization-quest-sst",
+      "title": "Add a central \"World Map\" navigation hub screen that presents exactly three Massive Realms and becomes the primary navigation entry point: (1) THE QUANTUM GALAXY (Science), (2) THE INFINITY DUNGEON (Mathematics), (3) THE CIVILIZATION QUEST (SST).",
       "reqIds": [
         "REQ-3"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-the-divide-and-conquer-section-ui-to-select-a-syllabus-chapter-topic-and-break-it-into-smaller-tasks-with-the-ability-to-create-view-update-and-mark-tasks-as-completed-moving-them-into-the-victory-zone-status",
-      "title": "Implement the \"Divide and Conquer\" section UI to select a syllabus chapter/topic and break it into smaller tasks, with the ability to create, view, update, and mark tasks as completed (moving them into the Victory Zone status).",
+      "id": "feature-implement-the-quantum-galaxy-science-realm-structure-on-the-frontend-with-3-planets-chemistry-physics-biology-and-represent-each-requested-chapter-as-an-unlockable-mission-level-with-a-distinct-3d-icon",
+      "title": "Implement THE QUANTUM GALAXY (Science realm) structure on the frontend with 3 planets—Chemistry, Physics, Biology—and represent each requested chapter as an unlockable Mission Level with a distinct 3D icon.",
       "reqIds": [
         "REQ-4"
       ],
       "version": 1
     },
     {
-      "id": "feature-display-the-provided-motivational-quote-at-the-end-of-the-primary-user-flow-interface-e-g-at-the-bottom-of-the-dashboard-and-or-as-a-dedicated-closing-section-using-prominent-styling-consistent-with-the-bold-adventurous-theme",
-      "title": "Display the provided motivational quote at the end of the primary user flow/interface (e.g., at the bottom of the Dashboard and/or as a dedicated closing section), using prominent styling consistent with the bold/adventurous theme.",
+      "id": "feature-implement-the-infinity-dungeon-mathematics-realm-as-a-linear-path-of-boss-levels-covering-every-listed-chapter-with-clear-progression-and-locking-until-prior-levels-are-completed",
+      "title": "Implement THE INFINITY DUNGEON (Mathematics realm) as a linear path of Boss Levels covering every listed chapter, with clear progression and locking until prior levels are completed.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-civilization-quest-sst-realm-with-4-distinct-kingdoms-history-portal-geography-portal-civics-pol-science-fortress-economics-valley-and-represent-each-listed-chapter-within-its-kingdom-as-an-unlockable-level-node-with-a-3d-icon",
+      "title": "Implement THE CIVILIZATION QUEST (SST realm) with 4 distinct Kingdoms—History Portal, Geography Portal, Civics/Pol Science Fortress, Economics Valley—and represent each listed chapter within its kingdom as an unlockable level node with a 3D icon.",
       "reqIds": [
         "REQ-6"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-required-generated-static-art-assets-to-support-the-war-map-battle-plan-look-and-render-them-in-the-ui-from-frontend-public-assets-generated-do-not-serve-images-from-the-backend",
-      "title": "Add required generated static art assets to support the War Map/Battle Plan look, and render them in the UI from frontend/public/assets/generated (do not serve images from the backend).",
+      "id": "feature-update-the-boss-fight-experience-so-every-chapter-quiz-is-a-boss-fight-tied-to-a-specific-chapter-node-not-just-a-subject-wide-quiz-list-with-minimal-text-and-an-icon-forward-power-card-presentation",
+      "title": "Update the Boss Fight experience so every chapter quiz is a \"Boss Fight\" tied to a specific chapter node (not just a subject-wide quiz list), with minimal text and an icon-forward \"Power Card\" presentation.",
       "reqIds": [
         "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-requested-reward-rules-end-to-end-winning-a-chapter-boss-fight-awards-exactly-500-xp-50-coins-and-a-chapter-mastery-medal-recorded-for-that-specific-chapter-and-used-to-unlock-subsequent-levels",
+      "title": "Implement the requested reward rules end-to-end: winning a chapter Boss Fight awards exactly 500 XP, 50 Coins, and a \"Chapter Mastery Medal\" recorded for that specific chapter (and used to unlock subsequent levels).",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-top-hud-to-include-a-glowing-level-up-progress-bar-a-daily-streak-fire-icon-and-a-visible-coins-counter-and-ensure-it-stays-consistent-across-realm-maps-and-boss-fights",
+      "title": "Update the top HUD to include: a glowing level-up progress bar, a Daily Streak fire icon, and a visible Coins counter, and ensure it stays consistent across realm maps and boss fights.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-the-requested-subject-color-system-consistently-across-the-world-map-realm-uis-nodes-and-boss-fight-screens-science-neon-green-maths-neon-gold-sst-neon-red",
+      "title": "Apply the requested subject color system consistently across the World Map, realm UIs, nodes, and Boss Fight screens: Science = neon green, Maths = neon gold, SST = neon red.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-chapter-realm-content-model-on-the-frontend-that-enumerates-all-chapters-exactly-as-specified-science-planets-chapters-maths-linear-chapters-sst-kingdoms-chapters-and-use-it-to-drive-the-world-map-and-boss-fight-routing",
+      "title": "Add a chapter/realm content model on the frontend that enumerates all chapters exactly as specified (Science planets/chapters, Maths linear chapters, SST kingdoms/chapters) and use it to drive the World Map and Boss Fight routing.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-render-generated-image-assets-from-the-static-public-assets-directory-frontend-public-assets-generated-for-the-world-map-and-key-realm-visuals-without-routing-images-through-the-backend",
+      "title": "Render generated image assets from the static public assets directory (frontend/public/assets/generated) for the World Map and key realm visuals, without routing images through the backend.",
+      "reqIds": [
+        "REQ-13"
       ],
       "version": 1
     }
@@ -62,39 +105,68 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "War-map style syllabus dashboard (Strategic Battle Plan) with bold/adventurous UI",
+      "summary": "Landing page with pulsing main CTA button 'START YOUR QUEST'",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Color-coded zones/sections: Red=Mission Critical, Blue=Tactical Drills, Green=Victory Zone (completed), Yellow=Scouting (new topics)",
+      "summary": "Central 'World Map' navigation hub with 3 Massive Realms: Quantum Galaxy (Science), Infinity Dungeon (Maths), Civilization Quest (SST)",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-3",
-      "summary": "\"Divide and Conquer\" section to break chapters into small tasks",
+      "summary": "Science realm (Quantum Galaxy): 3 planets (Chemistry/Physics/Biology) with chapters as unlockable mission levels and 3D icons",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-4",
-      "summary": "Display the provided motivational quote at the end of the interface/flow",
+      "summary": "Maths realm (Infinity Dungeon): linear path of boss levels covering all listed chapters",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "SST realm (Civilization Quest): 4 kingdoms (History/Geography/Civics-Electoral-PolSci/Economics) with the listed chapters",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Gamification: chapter quizzes as 'Boss Fights' awarding 500 XP, 50 Coins, and a 'Chapter Mastery Medal' on win",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Player HUD: top-header level-up progress bar and daily streak indicator",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "UI component system using icon-based animated 'Power Cards' (avoid long text)",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-9",
-      "summary": "Add backend persistence for syllabus items and tasks with status values that support the four strategic zones (Scouting, Mission Critical, Tactical Drills, Victory Zone), and expose query/update methods consumed by the frontend via React Query.",
+      "summary": "Neon color theme mapping: Science neon green, Maths neon gold, SST neon red (dark-mode neon aesthetic)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Extend the backend gamification model to include coins and chapter mastery tracking (per user, per chapter), and add backend methods needed by the frontend to: fetch a user’s coins + mastery/unlock state, and mark a chapter boss fight as completed with the fixed rewards.",
       "reqIds": [
-        "REQ-5"
+        "REQ-9"
       ],
       "status": "pending"
     }
   ],
-  "gameProjectType": "none",
-  "projectName": "Conquer Your Studies: Your Epic Learning Journey",
+  "projectName": "Class 9 Epic Adventure",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }
